@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_one"
+        icon="@drawable/ic_room"
+        title="硬件管理" />
+    <tab
+        id="@+id/tab_two"
+        icon="@drawable/ic_room"
+        title="室内环境" />
+    <tab
+        id="@+id/tab_three"
+        icon="@drawable/ic_room"
+        title="我的钱包" />
+</tabs>

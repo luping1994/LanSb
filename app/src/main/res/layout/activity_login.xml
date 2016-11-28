@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
+    android:background="#808080"
+    tools:context="com.suntrans.lansb.activity.LoginActivity">
+   <com.suntrans.lansb.views.CircleImageView
+       android:layout_width="100dip"
+       android:layout_height="100dip"
+       android:layout_centerHorizontal="true"
+       android:src="@drawable/touxiang"
+       android:layout_above="@+id/ll_login"
+       android:layout_marginBottom="40dip"
+       android:text="@string/app_name"/>
+   <LinearLayout
+       android:id="@+id/ll_login"
+       android:layout_centerInParent="true"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
+
+      <com.suntrans.lansb.views.EditView
+          android:background="@color/white"
+          android:hint="@string/login_account"
+          android:layout_width="match_parent"
+          android:layout_marginRight="40dip"
+          android:layout_marginLeft="40dip"
+          android:layout_height="50dip"
+          android:drawableLeft="@mipmap/ic_user"
+          android:id="@+id/account" />
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="30dip" />
+      <com.suntrans.lansb.views.EditView
+          android:id="@+id/password"
+          android:background="@color/white"
+          android:hint="@string/logon_mima"
+          android:inputType="textPassword"
+          android:layout_width="match_parent"
+          android:drawableLeft="@mipmap/ic_mima"
+          android:layout_marginRight="40dip"
+          android:layout_marginLeft="40dip"
+          android:layout_height="50dip" />
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="30dip" />
+      <Button
+          android:id="@+id/login"
+          android:text="@string/login"
+          android:textSize="19sp"
+          android:textColor="@color/white"
+          android:layout_width="match_parent"
+          android:layout_height="50dip"
+          android:layout_marginRight="40dip"
+          android:layout_marginLeft="40dip"
+          android:background="@drawable/bg_login"/>
+   </LinearLayout>
+   <TextView
+       android:layout_alignParentBottom="true"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:gravity="center"
+       android:textColor="@color/white"
+       android:textSize="20sp"
+       android:layout_marginBottom="20dip"
+       android:text="@string/company_name"/>
+</RelativeLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:padding="5dp">
+<LinearLayout
+    android:id="@+id/ll_span"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="5dp"
+    android:padding="0.2px">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="50dp"
+            android:gravity="center|left"
+            android:background="#fff"
+            android:hint="请选择"
+            android:singleLine="true"
+            android:paddingLeft="10dp"
+            android:textSize="18dp"/>
+        <LinearLayout
+            android:id="@+id/bt_dropdown"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="#fff"
+            android:gravity="center"
+            android:onClick="onClick" >
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="15dp"
+                android:background="@drawable/down_arrow" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
+
+</RelativeLayout>

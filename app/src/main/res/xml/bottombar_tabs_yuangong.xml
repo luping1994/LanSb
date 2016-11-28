@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_devices"
+        icon="@drawable/ic_room"
+        title="硬件管理" />
+    <tab
+        id="@+id/tab_room"
+        icon="@drawable/ic_room"
+        title="室内环境" />
+    <tab
+        id="@+id/tab_con"
+        icon="@drawable/ic_room"
+        title="公司制度" />
+</tabs>

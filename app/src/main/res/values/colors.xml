@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#eb4f38</color>
+    <color name="colorPrimaryDark">#eb4f38</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#ffffff</color>
+    <!-- 通用页面默认背景颜色 -->
+    <color name="bg_color">#efeef4</color>
+    <color name="colorPrimaryDark_green">#00ff00</color>
+    <color name="colorPrimary_green">#00ff00</color>
+</resources>

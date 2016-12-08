@@ -3,21 +3,46 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:suntrans="http://www.suntrans.net/"
     android:layout_height="match_parent">
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tablayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:tabIndicatorColor="#FFFFFF"
-        app:tabSelectedTextColor="#FFFFFF"
-        app:tabTextColor="#F7BB43"
-        />
-    <!--app:tabIndicatorColor="@color/white"                 // 下方滚动的下划线颜色
-        app:tabSelectedTextColor="@color/gray"               // tab被选中后，文字的颜色
-        app:tabTextColor="@color/white"                      // tab默认的文字颜色
-     -->
-    <android.support.v4.view.ViewPager
+
+  <LinearLayout
+      android:background="@color/white"
+      android:layout_width="match_parent"
+      android:orientation="horizontal"
+      android:layout_height="50dp">
+    <TextView
+        android:text="空气纯度"
+        android:gravity="center"
+        android:id="@+id/tab1"
+        android:background="@color/colorAccent"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent">
+
+    </TextView>
+    <TextView
+        android:gravity="center"
+        android:text="温湿度"
+        android:id="@+id/tab2"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent">
+
+    </TextView>
+    <TextView
+        android:gravity="center"
+        android:text="房屋倾斜度"
+        android:id="@+id/tab3"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent">
+    </TextView>
+  </LinearLayout>
+
+  <com.suntrans.lansb.views.IViewPager
+        suntrans:enabled ="false"
+        android:background="@color/bg_color"
         android:id="@+id/vp"
         android:layout_width="fill_parent"
         android:layout_height="0dp"

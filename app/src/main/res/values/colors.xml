@@ -2,10 +2,15 @@
 <resources>
     <color name="colorPrimary">#eb4f38</color>
     <color name="colorPrimaryDark">#eb4f38</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#FF4f00</color>
     <color name="white">#ffffff</color>
     <!-- 通用页面默认背景颜色 -->
     <color name="bg_color">#efeef4</color>
     <color name="colorPrimaryDark_green">#00ff00</color>
     <color name="colorPrimary_green">#00ff00</color>
+    <color name="grey">#808080</color>
+    <color name="black">#000000</color>
+    <color name="blue">#0000ff</color>
+    <color name="divider">#55aaaaaa</color>
+    <color name="tx_color">#000000</color>
 </resources>

@@ -34,7 +34,6 @@ public class BaseApplication extends Application {
         boolean frist = getSharedPreferences().getBoolean("isFristCome",true);
         //假如是第一次启动app则保存ip地址,首次穷默认为内网ip
         if (frist){
-
             getSharedPreferences().edit().putBoolean("isFristCome",false).commit();
             getSharedPreferences().edit().putString("sixIpAddress","192.168.1.15").commit();
             getSharedPreferences().edit().putInt("sixPort",2000).commit();

@@ -80,4 +80,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         tuichu.setOnClickListener(this);
         dialog.show();
     }
+
+    @Override
+    protected void onDestroy() {
+        if (dialog!=null){
+            dialog.dismiss();
+        }
+        super.onDestroy();
+    }
 }

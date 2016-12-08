@@ -6,4 +6,6 @@
     <dimen name="nav_header_height">206dp</dimen>
     <dimen name="title_size">18sp</dimen>
     <dimen name="subtitle_size">15sp</dimen>
+    <dimen name="margin_left">16dp</dimen>
+    <dimen name="margin_right">16dp</dimen>
 </resources>

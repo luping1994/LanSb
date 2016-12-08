@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="partment">
+        <item>部门1</item>
+        <item>部门2</item>
+        <item>部门3</item>
+        <item>部门4</item>
+        <item>部门5</item>
+    </string-array>
+
+    <string-array name="area">
+        <item>插座</item>
+        <item>空调</item>
+        <item>电视机</item>
+        <item>电脑</item>
+    </string-array>
+
+</resources>

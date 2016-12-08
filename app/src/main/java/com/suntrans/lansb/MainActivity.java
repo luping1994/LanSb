@@ -3,41 +3,37 @@ package com.suntrans.lansb;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.OnTabSelectListener;
-import com.suntrans.lansb.fragment.HardwareFragment;
-import com.suntrans.lansb.fragment.InnerroomFragment;
+import com.suntrans.lansb.activity.PersonalActivity;
+import com.suntrans.lansb.fragment.Comapny_Fragment;
 import com.suntrans.lansb.fragment.Main_fragment;
-import com.suntrans.lansb.fragment.WalletFragment;
 import com.suntrans.lansb.utils.SharedPreferrenceHelper;
 import com.suntrans.lansb.utils.StatusBarCompat;
 import com.suntrans.lansb.utils.UiUtils;
+import com.suntrans.lansb.views.CircleImageView;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener, OnTabSelectListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     @InjectView(R.id.content)
     FrameLayout content;
     @InjectView(R.id.nav_view)
     NavigationView navView;
     @InjectView(R.id.drawer_layout)
      DrawerLayout drawerLayout;
-    @InjectView(R.id.title_name)
-    public TextView titleName;
+
 
     @InjectView(R.id.toolbar)
     LinearLayout toolbar;
@@ -46,19 +42,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @InjectView(R.id.left_image)
     ImageView leftImage;
 
-    private BottomBar bottomBar;
-    private HardwareFragment hardwareFragment;
-    private InnerroomFragment innerroomFragment;
-    private WalletFragment walletFragment;
-    private LinearLayout toolbarRight;
-    private Main_fragment main_fragment;
+
+
     private int theme = 0;
     private static final String TAG = "MainActivity";
-
-
+    private Fragment[] fragments;
+    private int currentIndex=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i(TAG,"onCreat");
         if(savedInstanceState==null){
             theme= UiUtils.getAppTheme(this);
         }else{
@@ -70,8 +61,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         StatusBarCompat.compat(this, Color.TRANSPARENT);
         ButterKnife.inject(this);
         setupNavagationView();
-        initView();
+        initFragments();
     }
+
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -79,30 +72,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         outState.putInt("theme",theme);
     }
 
-    private void initView() {
-        int type = getIntent().getIntExtra("type",0);
-        bottomBar = (BottomBar) findViewById(R.id.bottomBar);
-        toolbarRight = (LinearLayout) findViewById(R.id.layout_right);
-        bottomBar.setOnTabSelectListener(this);
-        titleName.setText("硬件管理");
-    }
-
     private void setupNavagationView() {
         View view = navView.inflateHeaderView(R.layout.nav_header_main);
-        view.setOnClickListener(this);
+        CircleImageView nav = (CircleImageView) view.findViewById(R.id.nav_head_avatar);
+        nav.setOnClickListener(this);
         leftIcon.setOnClickListener(this);
-        titleName.setText(getResources().getString(R.string.app_name));
         navView.setNavigationItemSelectedListener(this);
-        main_fragment = new Main_fragment();
-//        getSupportFragmentManager().beginTransaction().replace(R.id.content,main_fragment).commit();
+
     }
 
-
+    private void initFragments() {
+        Main_fragment main_fragment = Main_fragment.newInstance();
+        Comapny_Fragment comapnyFragment =Comapny_Fragment.newInstance();
+        fragments = new Fragment[]{
+                main_fragment,
+                comapnyFragment
+        };
+        getSupportFragmentManager().beginTransaction().replace(R.id.content,main_fragment).commit();
+    }
    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.left_icon:
                 drawerLayout.openDrawer(GravityCompat.START);
+                break;
+            case R.id.nav_head_avatar:
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, PersonalActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -111,8 +108,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_home:
+                changFragment(0);
                 break;
             case R.id.nav_per:
+                changFragment(1);
                 break;
             case R.id.nav_money:
                 break;
@@ -128,35 +127,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 reload();
                 break;
         }
+        drawerLayout.closeDrawers();
         return true;
     }
 
-
-    @Override
-    public void onTabSelected(@IdRes int tabId) {
-        switch (tabId){
-            case R.id.tab_one:
-                titleName.setText("硬件管理");
-                if (hardwareFragment==null){
-                    hardwareFragment = new HardwareFragment();
-                }
-                getSupportFragmentManager().beginTransaction().replace(R.id.content,hardwareFragment).commit();
-                break;
-            case R.id.tab_two:
-                titleName.setText("室内环境");
-                if (innerroomFragment==null){
-                    innerroomFragment = new InnerroomFragment();
-                }
-                getSupportFragmentManager().beginTransaction().replace(R.id.content,innerroomFragment).commit();
-                break;
-            case R.id.tab_three:
-                titleName.setText("我的钱包");
-                if (walletFragment==null){
-                    walletFragment = new WalletFragment();
-                }
-                getSupportFragmentManager().beginTransaction().replace(R.id.content,walletFragment).commit();
-                break;
+    private void changFragment(int index) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.hide(fragments[currentIndex]);
+        if (!fragments[index].isAdded()){
+            transaction.add(R.id.content,fragments[index]);
         }
+        transaction.show(fragments[index]).commit();
+        currentIndex=index;
     }
 
 
@@ -172,18 +154,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.i(TAG,"onRestart");
 
     }
     @Override
     protected void onPause() {
         super.onPause();
-        Log.i(TAG,"onPause");
     }
 
     @Override
     protected void onResume() {
-        Log.i(TAG,"onResume");
         super.onResume();
         if(theme==UiUtils.getAppTheme(this)){
         }else{

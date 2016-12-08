@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="80dip">
+    <com.suntrans.lansb.views.CircleImageView
+        android:id="@+id/iv_icon"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/margin_left"
+    android:src="@mipmap/ic_bulb_off"
+    android:layout_width="75dip"
+    android:layout_height="match_parent" />
+    <LinearLayout
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/title_name"
+                android:gravity="center"
+                android:text="名称:"
+                android:maxLines="1"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/name"
+                android:maxLines="1"
+                android:gravity="center|left"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:ellipsize="end"
+                android:textColor="@color/blue"
+                android:text="总开关"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="18sp"
+                android:text="区域:"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/area"
+                android:maxLines="1"
+                android:gravity="center|left"
+                android:ellipsize="end"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/blue"
+                android:text="未定义"/>
+        </LinearLayout>
+    </LinearLayout>
+    <com.suntrans.lansb.views.Switch
+        android:layout_marginRight="@dimen/margin_right"
+        android:layout_gravity="center"
+        android:id="@+id/_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="1dp"
+       android:background="@color/grey"/>
+</LinearLayout>

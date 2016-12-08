@@ -11,5 +11,5 @@
     <tab
         id="@+id/tab_three"
         icon="@drawable/ic_room"
-        title="我的钱包" />
+        title="用电信息" />
 </tabs>

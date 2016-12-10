@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     android:layout_height="match_parent">
+    <include layout="@layout/toolbar"/>
     <FrameLayout
         android:background="@color/bg_color"
         android:layout_above="@+id/bottomBar"

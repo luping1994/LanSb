@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.suntrans.lansb.views.MyRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.suntrans.lansb.activity.LoginActivity">
+<RelativeLayout
+    android:background="#e0e0e0"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <include layout="@layout/toolbar"/>
+
+        <LinearLayout
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:gravity="center|left"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="工号"/>
+            <com.suntrans.lansb.views.EditView
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="5dp"
+                android:id="@+id/gonghao"
+                android:background="@drawable/bt_login"
+                android:hint="请输入工号"
+                android:inputType="textPassword"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:gravity="center|left"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="姓名"/>
+            <com.suntrans.lansb.views.EditView
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="5dp"
+                android:id="@+id/name"
+                android:background="@drawable/bt_login"
+                android:hint="请输入姓名"
+                android:inputType="textPassword"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:gravity="center|left"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="公司"/>
+            <com.suntrans.lansb.views.EditView
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="5dp"
+                android:id="@+id/company"
+                android:background="@drawable/bt_login"
+                android:hint="请输入公司"
+                android:inputType="textPassword"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:gravity="center|left"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="部门"/>
+            <com.suntrans.lansb.views.EditView
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="5dp"
+                android:id="@+id/part"
+                android:background="@drawable/bt_login"
+                android:hint="请输入部门"
+                android:inputType="textPassword"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dip" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:background="@drawable/bg_button"
+            android:layout_width="wrap_content"
+            android:text="确认添加"
+            android:textColor="@color/white"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/button" />
+    </RelativeLayout>
+</RelativeLayout>
+</com.suntrans.lansb.views.MyRelativeLayout>

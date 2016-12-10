@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
+    android:background="#55aaaaaa"
+    tools:context="com.suntrans.lansb.activity.LoginActivity">
+    <com.suntrans.lansb.views.CircleImageView
+        android:layout_width="75dip"
+        android:layout_height="75dip"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/touxiang"
+        android:layout_above="@+id/ll_login"
+        android:layout_marginBottom="10dip"
+        android:text="@string/app_name"/>
+
+    <LinearLayout
+        android:id="@+id/ll_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <com.suntrans.lansb.views.EditView
+            android:background="@drawable/bt_login"
+            android:hint="工号"
+            android:layout_width="match_parent"
+            android:layout_marginRight="@dimen/loginmargin"
+            android:layout_marginLeft="@dimen/loginmargin"
+            android:layout_height="35dip"
+            android:id="@+id/account" />
+
+
+        <com.suntrans.lansb.views.EditView
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:id="@+id/phone"
+            android:background="@drawable/bt_login"
+            android:hint="电话"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_marginRight="@dimen/loginmargin"
+            android:layout_marginLeft="@dimen/loginmargin"
+            android:layout_height="35dip" />
+        <LinearLayout
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="@dimen/loginmargin"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+
+            <com.suntrans.lansb.views.EditView
+                android:id="@+id/yanzhengma"
+                android:background="@drawable/bt_login"
+                android:hint="验证码"
+                android:inputType="textPassword"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="35dip" />
+            <Button
+                android:gravity="center|left"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="获取验证码"/>
+        </LinearLayout>
+
+
+        <com.suntrans.lansb.views.EditView
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:id="@+id/password"
+            android:background="@drawable/bt_login"
+            android:hint="设置密码"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_marginRight="@dimen/loginmargin"
+            android:layout_marginLeft="@dimen/loginmargin"
+            android:layout_height="35dip" />
+        <com.suntrans.lansb.views.EditView
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:id="@+id/repassword"
+            android:background="@drawable/bt_login"
+            android:hint="确认密码"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_marginRight="@dimen/loginmargin"
+            android:layout_marginLeft="@dimen/loginmargin"
+            android:layout_height="35dip" />
+
+        <RelativeLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:background="@drawable/bg_button"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:text="激活"
+                android:textColor="@color/white"
+                android:layout_height="30dp" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

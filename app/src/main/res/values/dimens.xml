@@ -8,4 +8,5 @@
     <dimen name="subtitle_size">15sp</dimen>
     <dimen name="margin_left">16dp</dimen>
     <dimen name="margin_right">16dp</dimen>
+    <dimen name="loginmargin">60dip</dimen>
 </resources>

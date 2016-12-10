@@ -9,4 +9,5 @@
     <string name="setting_par">参数配置</string>
     <string name="back">返回</string>
     <string name="query">查询</string>
+    <string name="activate">激活</string>
 </resources>

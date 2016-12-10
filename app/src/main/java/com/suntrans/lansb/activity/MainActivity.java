@@ -1,47 +1,33 @@
-package com.suntrans.lansb;
+package com.suntrans.lansb.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
-import com.suntrans.lansb.activity.PersonalActivity;
+import com.suntrans.lansb.R;
+import com.suntrans.lansb.fragment.About_Fragment;
 import com.suntrans.lansb.fragment.Comapny_Fragment;
 import com.suntrans.lansb.fragment.Main_fragment;
+import com.suntrans.lansb.fragment.Wallet_Fragment;
 import com.suntrans.lansb.utils.SharedPreferrenceHelper;
 import com.suntrans.lansb.utils.StatusBarCompat;
 import com.suntrans.lansb.utils.UiUtils;
 import com.suntrans.lansb.views.CircleImageView;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
-    @InjectView(R.id.content)
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
     FrameLayout content;
-    @InjectView(R.id.nav_view)
     NavigationView navView;
-    @InjectView(R.id.drawer_layout)
-     DrawerLayout drawerLayout;
-
-
-    @InjectView(R.id.toolbar)
-    LinearLayout toolbar;
-    @InjectView(R.id.left_icon)
-    LinearLayout leftIcon;
-    @InjectView(R.id.left_image)
-    ImageView leftImage;
-
+     public DrawerLayout drawerLayout;
 
 
     private int theme = 0;
@@ -59,11 +45,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         StatusBarCompat.compat(this, Color.TRANSPARENT);
-        ButterKnife.inject(this);
+        initView();
         setupNavagationView();
         initFragments();
     }
 
+    private void initView() {
+        content = (FrameLayout) findViewById(R.id.content);
+        navView = (NavigationView) findViewById(R.id.nav_view);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+    }
 
 
     @Override
@@ -76,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         View view = navView.inflateHeaderView(R.layout.nav_header_main);
         CircleImageView nav = (CircleImageView) view.findViewById(R.id.nav_head_avatar);
         nav.setOnClickListener(this);
-        leftIcon.setOnClickListener(this);
         navView.setNavigationItemSelectedListener(this);
 
     }
@@ -84,22 +74,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initFragments() {
         Main_fragment main_fragment = Main_fragment.newInstance();
         Comapny_Fragment comapnyFragment =Comapny_Fragment.newInstance();
+        Wallet_Fragment wallet_fragment = Wallet_Fragment.newInstance();
+        About_Fragment about_fragment = About_Fragment.newInstance();
         fragments = new Fragment[]{
                 main_fragment,
-                comapnyFragment
+                comapnyFragment,
+                wallet_fragment,
+                about_fragment
         };
         getSupportFragmentManager().beginTransaction().replace(R.id.content,main_fragment).commit();
     }
    @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.left_icon:
-                drawerLayout.openDrawer(GravityCompat.START);
-                break;
             case R.id.nav_head_avatar:
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, PersonalActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
         }
     }
@@ -114,8 +106,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 changFragment(1);
                 break;
             case R.id.nav_money:
+                changFragment(2);
                 break;
             case R.id.nav_about:
+                changFragment(3);
                 break;
             case R.id.nav_theme:
                 if (SharedPreferrenceHelper.gettheme(this).equals("1")){
@@ -169,4 +163,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             reload();
         }
     }
+
+
+    private long[] mHits = new long[2];
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
+            mHits[mHits.length - 1] = SystemClock.uptimeMillis();
+            if (mHits[0] >= (SystemClock.uptimeMillis() - 2000)) {
+                finish();
+            }else {
+                UiUtils.showToast(MainActivity.this,"再按一次退出");
+            }
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
 }

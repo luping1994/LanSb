@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.suntrans.lansb.MainActivity;
 import com.suntrans.lansb.R;
 import com.suntrans.lansb.utils.StatusBarCompat;
 import com.suntrans.lansb.views.EditView;
@@ -22,6 +21,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private String account;
     private String password;
     private AlertDialog dialog;
+    Button forget;
+    Button activate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +33,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         login = (Button) findViewById(R.id.login);
         ed_account = (EditView) findViewById(R.id.account);
         ed_password = (EditView) findViewById(R.id.password);
+        forget = (Button) findViewById(R.id.forget);
+        activate = (Button) findViewById(R.id.activate);
+
         String zhanghao = getSharedPreferences("config", Context.MODE_PRIVATE).getString("account","");
         String mima = getSharedPreferences("config", Context.MODE_PRIVATE).getString("password","");
         ed_account.setText(zhanghao);
         ed_password.setText(mima);
+
+        forget.setOnClickListener(this);
         login.setOnClickListener(this);
+        activate.setOnClickListener(this);
     }
 
     @Override
@@ -62,6 +69,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.bt_tuichu:
                 dialog.dismiss();
+                break;
+            case R.id.forget:
+                startActivity(new Intent(LoginActivity.this,FindpasswordActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                break;
+            case R.id.activate:
+                startActivity(new Intent(LoginActivity.this,ActivateActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
         }
 

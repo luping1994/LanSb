@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':library', ':skin_black', ':skin_brown'

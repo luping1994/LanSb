@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="三相电动机控制器"
+        android:text="toolbar"
         android:textColor="@color/white"
         android:textSize="18sp"/>
 

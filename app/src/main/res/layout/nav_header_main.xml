@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.suntrans.lansb.views.MyRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    skin:enable="true"
     android:id="@+id/menu_header"
     android:layout_width="match_parent"
     android:fitsSystemWindows="true"
     android:layout_height="@dimen/nav_header_height"
+    android:background="@color/colorPrimary"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
-    <com.suntrans.lansb.views.CircleImageView
+    <com.suntrans.lanzhouwh.views.CircleImageView
         android:id="@+id/nav_head_avatar"
         android:layout_centerInParent="true"
         android:layout_marginLeft="40dp"
@@ -25,4 +29,4 @@
         android:textColor="@android:color/white"
         android:textSize="16sp" />
 
-</com.suntrans.lansb.views.MyRelativeLayout>
+</RelativeLayout>

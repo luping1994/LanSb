@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.suntrans.lansb.views.MyLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    xmlns:skin="http://schemas.android.com/android/skin"
     android:fitsSystemWindows="true"
-    android:background="@color/colorPrimary"
     android:layout_width="match_parent"
     android:layout_height="match_parent">y
     <LinearLayout
@@ -10,7 +10,6 @@
         android:background="@color/bg_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
     <include layout="@layout/toolbar"/>
     <RelativeLayout
         android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -21,7 +20,7 @@
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
-            <com.suntrans.lansb.views.CircleImageView
+            <com.suntrans.lanzhouwh.views.CircleImageView
                 android:layout_centerVertical="true"
                 android:id="@+id/iv_touxiang"
                 android:layout_width="75dp"
@@ -43,6 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <Button
+                skin:enable="true"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:background="@drawable/bg_button"
@@ -108,6 +108,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
+            android:onClick="signOut"
+            skin:enable="true"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:background="@drawable/bg_button"
@@ -119,4 +121,4 @@
     </RelativeLayout>
     </LinearLayout>
 
-</com.suntrans.lansb.views.MyLinearLayout>
+</LinearLayout>

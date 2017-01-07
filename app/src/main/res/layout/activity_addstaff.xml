@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.suntrans.lansb.views.MyRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:skin="http://schemas.android.com/android/skin"
     android:fitsSystemWindows="true"
-    tools:context="com.suntrans.lansb.activity.LoginActivity">
+    tools:context="com.suntrans.lanzhouwh.activity.LoginActivity">
 <RelativeLayout
     android:background="#e0e0e0"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <LinearLayout
         android:id="@+id/ll_login"
         android:layout_width="match_parent"
@@ -27,16 +27,17 @@
             android:layout_height="40dp">
             <TextView
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="@dimen/content_text_size"
                 android:gravity="center|left"
                 android:layout_marginLeft="@dimen/activity_vertical_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="工号"/>
-            <com.suntrans.lansb.views.EditView
+            <com.suntrans.lanzhouwh.views.EditView
                 android:layout_marginLeft="10dp"
-                android:paddingLeft="5dp"
+                android:paddingLeft="10dp"
                 android:id="@+id/gonghao"
+                android:textSize="@dimen/content_text_size"
                 android:background="@drawable/bt_login"
                 android:hint="请输入工号"
                 android:inputType="textPassword"
@@ -53,15 +54,16 @@
             android:layout_height="40dp">
             <TextView
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="@dimen/content_text_size"
                 android:gravity="center|left"
                 android:layout_marginLeft="@dimen/activity_vertical_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="姓名"/>
-            <com.suntrans.lansb.views.EditView
+            <com.suntrans.lanzhouwh.views.EditView
                 android:layout_marginLeft="10dp"
-                android:paddingLeft="5dp"
+                android:paddingLeft="10dp"
+                android:textSize="@dimen/content_text_size"
                 android:id="@+id/name"
                 android:background="@drawable/bt_login"
                 android:hint="请输入姓名"
@@ -78,17 +80,19 @@
             android:layout_width="match_parent"
             android:layout_height="40dp">
             <TextView
+
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="@dimen/content_text_size"
                 android:gravity="center|left"
                 android:layout_marginLeft="@dimen/activity_vertical_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="公司"/>
-            <com.suntrans.lansb.views.EditView
+            <com.suntrans.lanzhouwh.views.EditView
                 android:layout_marginLeft="10dp"
-                android:paddingLeft="5dp"
+                android:paddingLeft="10dp"
                 android:id="@+id/company"
+                android:textSize="@dimen/content_text_size"
                 android:background="@drawable/bt_login"
                 android:hint="请输入公司"
                 android:inputType="textPassword"
@@ -105,15 +109,17 @@
             android:layout_height="40dp">
             <TextView
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="@dimen/content_text_size"
                 android:gravity="center|left"
                 android:layout_marginLeft="@dimen/activity_vertical_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="部门"/>
-            <com.suntrans.lansb.views.EditView
+
+            <com.suntrans.lanzhouwh.views.EditView
                 android:layout_marginLeft="10dp"
-                android:paddingLeft="5dp"
+                android:textSize="@dimen/content_text_size"
+                android:paddingLeft="10dp"
                 android:id="@+id/part"
                 android:background="@drawable/bt_login"
                 android:hint="请输入部门"
@@ -129,7 +135,9 @@
         android:layout_marginBottom="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <Button
+            skin:enable="true"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:background="@drawable/bg_button"
@@ -137,9 +145,9 @@
             android:text="确认添加"
             android:textColor="@color/white"
             android:layout_height="30dp"
+            android:id="@+id/button"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/button" />
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 </RelativeLayout>
-</com.suntrans.lansb.views.MyRelativeLayout>
+</LinearLayout>

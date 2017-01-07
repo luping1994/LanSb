@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="6dp"
+        android:background="@android:color/transparent">
+        <com.suntrans.lanzhouwh.views.CircleImageView
+            android:id="@+id/theme_color_one"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="#FF0000" />
+
+        <com.suntrans.lanzhouwh.views.CircleImageView
+            android:id="@+id/iv_mask_one"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_mask" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="6dp"
+        android:background="@android:color/transparent">
+
+        <com.suntrans.lanzhouwh.views.CircleImageView
+            android:id="@+id/theme_color_two"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="#00FF00" />
+
+        <com.suntrans.lanzhouwh.views.CircleImageView
+            android:id="@+id/iv_mask_two"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_mask" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="6dp"
+        android:background="@android:color/transparent">
+
+        <com.suntrans.lanzhouwh.views.CircleImageView
+            android:id="@+id/theme_color_three"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="#0000FF" />
+
+        <com.suntrans.lanzhouwh.views.CircleImageView
+            android:id="@+id/iv_mask_three"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_mask" />
+    </RelativeLayout>
+</LinearLayout>

@@ -3,10 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    xmlns:skin="http://schemas.android.com/android/skin"
     android:layout_height="match_parent"
     >
 
-    <com.suntrans.lansb.views.MyLinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:fitsSystemWindows="true"
@@ -19,23 +20,18 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             />
-        <!--<com.roughike.bottombar.BottomBar-->
-            <!--android:layout_marginTop="-5dp"-->
-            <!--android:id="@+id/bottomBar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="60dp"-->
-            <!--app:bb_tabXmlResource="@xml/bottombar_tabs" />-->
-    </com.suntrans.lansb.views.MyLinearLayout>
+    </LinearLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
+        skin:enable="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         android:overScrollMode="never"
         android:scrollbars="none"
-        app:menu="@menu/menu_nav" />
+         />
 
 </android.support.v4.widget.DrawerLayout>
 

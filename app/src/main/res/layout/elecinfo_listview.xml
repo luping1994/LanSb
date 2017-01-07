@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:skin="http://schemas.android.com/android/skin"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:id="@+id/layout"
-    android:background="@drawable/bg_layout_listall"
+    android:background="?attr/selectableItemBackground"
     >
     <TextView
         android:id="@+id/list_header"
@@ -22,7 +24,9 @@
         android:layout_height="50dip"
         android:orientation="horizontal">
 
-        <ImageView
+        <ren.solid.skinloader.entity.MyImageView
+            skin:enable="true"
+            app:ColorFilter1="@color/colorPrimary"
             android:layout_width="34dip"
             android:layout_height="34dip"
             android:layout_gravity="center"

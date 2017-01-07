@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="false"
     android:background="#55aaaaaa"
-    tools:context="com.suntrans.lansb.activity.LoginActivity">
-   <com.suntrans.lansb.views.CircleImageView
+    tools:context="com.suntrans.lanzhouwh.activity.LoginActivity">
+   <com.suntrans.lanzhouwh.views.CircleImageView
        android:layout_width="75dip"
        android:layout_height="75dip"
        android:layout_centerHorizontal="true"
@@ -22,7 +22,8 @@
        android:layout_height="wrap_content"
        android:orientation="vertical">
 
-      <com.suntrans.lansb.views.EditView
+      <com.suntrans.lanzhouwh.views.EditView
+          android:maxLines="1"
           android:background="@drawable/bt_login"
           android:hint="@string/login_account"
           android:layout_width="match_parent"
@@ -35,7 +36,9 @@
       <TextView
           android:layout_width="match_parent"
           android:layout_height="30dip" />
-      <com.suntrans.lansb.views.EditView
+      <com.suntrans.lanzhouwh.views.EditView
+
+          android:maxLines="1"
           android:id="@+id/password"
           android:background="@drawable/bt_login"
           android:hint="@string/logon_mima"
@@ -61,7 +64,7 @@
       <RelativeLayout
           android:layout_marginTop="15dp"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content">
+          android:layout_height="50dp">
          <Button
              android:id="@+id/forget"
              android:paddingLeft="5dp"
@@ -71,7 +74,7 @@
              android:layout_width="wrap_content"
              android:text="忘记密码?点这里"
              android:textColor="@color/white"
-             android:layout_height="20dp" />
+             android:layout_height="@dimen/button_size" />
       </RelativeLayout>
    </LinearLayout>
    <RelativeLayout

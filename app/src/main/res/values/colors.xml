@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#eb4f38</color>
+    <color name="colorPrimary">#f75b47</color>
     <color name="colorPrimaryDark">#eb4f38</color>
     <color name="colorAccent">#FF4f00</color>
     <color name="white">#ffffff</color>
+    <color name="secondcolor">#bdbdbd</color>
     <!-- 通用页面默认背景颜色 -->
     <color name="bg_color">#efeef4</color>
     <color name="colorPrimaryDark_green">#00ff00</color>
@@ -13,4 +14,9 @@
     <color name="blue">#0000ff</color>
     <color name="divider">#55aaaaaa</color>
     <color name="tx_color">#000000</color>
+
+    <color name="tablayout_textcolor">#deffffff</color>
+
+    <color name="yellow">#ffd700</color>
+    <color name="yellow3">#1cb6ee</color>
 </resources>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.suntrans.lansb.views.MyLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     android:layout_width="match_parent"
@@ -72,4 +72,4 @@
                 />
         </LinearLayout>
     </LinearLayout>
-</com.suntrans.lansb.views.MyLinearLayout>
+</LinearLayout>

@@ -1,51 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:skin="http://schemas.android.com/android/skin"
     xmlns:suntrans="http://www.suntrans.net/"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-  <LinearLayout
-      android:background="@color/white"
-      android:layout_width="match_parent"
-      android:orientation="horizontal"
-      android:layout_height="50dp">
-    <TextView
-        android:text="空气纯度"
-        android:gravity="center"
-        android:id="@+id/tab1"
-        android:background="@color/colorAccent"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent">
+    <android.support.design.widget.TabLayout
+        app:tabSelectedTextColor="@color/white"
+        app:tabIndicatorColor="@color/white"
+        skin:enable="true"
+        android:background="@color/colorPrimary"
+        app:tabTextColor="@color/tablayout_textcolor"
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    </TextView>
-    <TextView
-        android:gravity="center"
-        android:text="温湿度"
-        android:id="@+id/tab2"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent">
+    </android.support.design.widget.TabLayout>
 
-    </TextView>
-    <TextView
-        android:gravity="center"
-        android:text="房屋倾斜度"
-        android:id="@+id/tab3"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent">
-    </TextView>
-  </LinearLayout>
-
-  <com.suntrans.lansb.views.IViewPager
-        suntrans:enabled ="false"
-        android:background="@color/bg_color"
+    <com.suntrans.lanzhouwh.views.IViewPager
         android:id="@+id/vp"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        />
+        android:background="@color/bg_color"
+        suntrans:enabled="false" />
 </LinearLayout>

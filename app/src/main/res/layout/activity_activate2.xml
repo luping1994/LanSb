@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#55aaaaaa"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    tools:context="com.suntrans.lanzhouwh.activity.LoginActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--<com.suntrans.lanzhouwh.views.CircleImageView-->
+            <!--android:layout_width="75dip"-->
+            <!--android:layout_height="75dip"-->
+            <!--android:layout_above="@+id/ll_login"-->
+            <!--android:layout_below="@+id/toolbar"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginBottom="10dip"-->
+            <!--android:src="@drawable/touxiang"-->
+            <!--android:text="@string/app_name" />-->
+
+        <LinearLayout
+            android:id="@+id/ll_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+
+            <com.suntrans.lanzhouwh.views.EditView
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="35dip"
+                android:layout_marginLeft="@dimen/loginmargin"
+                android:layout_marginRight="@dimen/loginmargin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:background="@drawable/bt_login"
+                android:hint="设置密码"
+                android:inputType="textPassword"
+                android:paddingLeft="10dp"
+                android:textSize="14sp" />
+
+            <com.suntrans.lanzhouwh.views.EditView
+                android:id="@+id/repassword"
+                android:layout_width="match_parent"
+                android:layout_height="35dip"
+                android:layout_marginLeft="@dimen/loginmargin"
+                android:layout_marginRight="@dimen/loginmargin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:background="@drawable/bt_login"
+                android:hint="确认密码"
+                android:inputType="textPassword"
+                android:paddingLeft="10dp"
+                android:textSize="14sp" />
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/password_check"
+                android:textColor="@color/md_red_A700"
+                android:layout_marginLeft="@dimen/loginmargin"
+                android:text="两次输入的密码不一致"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <Button
+                    android:onClick="activate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/bg_button"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="激活"
+                    android:textColor="@color/white"
+                    skin:enable="true" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

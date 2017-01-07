@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:background="@color/bg_color"
     android:layout_width="match_parent"
+    xmlns:skin="http://schemas.android.com/android/skin"
     android:layout_height="match_parent">
     <LinearLayout
         android:orientation="vertical"
@@ -58,6 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
+                skin:enable="true"
                 android:background="@drawable/bg_button"
                 android:layout_centerInParent="true"
                 android:layout_width="100dp"
@@ -72,11 +74,11 @@
         android:layout_width="match_parent"
         android:paddingLeft="16dp"
         android:layout_gravity="center"
-        android:layout_height="40dp">
+        android:layout_height="35dp">
         <TextView
             android:textColor="@color/white"
             android:text="用电情况"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:gravity="center|left"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">

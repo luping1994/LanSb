@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
+import okhttp3.CacheControl;
 import okhttp3.FormBody;
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -50,6 +52,8 @@ public class RetrofitHelper {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
+
+                Response response=null;
                 if (request.method().equals("POST")){
                     if (request.body() instanceof FormBody){
                         FormBody.Builder builder=new FormBody.Builder();
@@ -62,23 +66,46 @@ public class RetrofitHelper {
                                 .build();
                         request = request.newBuilder().post(body).build();
                     }
+                    response= chain.proceed(request);
+
+                }else if (request.method().equals("GET")){
+
+                    HttpUrl.Builder builder = request.url()
+                            .newBuilder()
+                            .scheme(request.url().scheme())
+                            .host(request.url().host())
+                            .addQueryParameter("appkey","suntrans2016");
+                    request = request.newBuilder()
+                            .url(builder.build())
+                            .build();
+                    if (!UiUtils.isNetworkAvailable()){
+                        request = request.newBuilder()
+                                .cacheControl(CacheControl.FORCE_CACHE)
+                                .build();
+                        System.out.println("暂无网络");
+                    }
+
+                    response= chain.proceed(request);
+
+                    if (UiUtils.isNetworkAvailable()){
+                        int maxAge = 60 * 60*3; // read from cache for 1 minute
+                        response.newBuilder()
+                                .removeHeader("Pragma")
+                                .header("Cache-Control", "public, max-age=" + maxAge)
+                                .build();
+                    }else {
+                        int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks stale
+                        response.newBuilder()
+                                .removeHeader("Pragma")
+                                .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
+                                .build();
+                    }
                 }
 
-                Response  response = chain.proceed(request);
-                if (UiUtils.isNetworkAvailable()){
-                    int maxAge = 60 * 60; // read from cache for 1 minute
-                    response.newBuilder()
-                            .removeHeader("Pragma")
-                            .header("Cache-Control", "public, max-age=" + maxAge)
-                            .build();
-                }else {
-                    int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks stale
-                    response.newBuilder()
-                            .removeHeader("Pragma")
-                            .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
-                            .build();
-                }
-               return response;
+
+
+
+                return response;
             }
         };
 

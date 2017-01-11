@@ -33,6 +33,7 @@ public class ChangeSkinFragment extends BaseFragment implements View.OnClickList
     LinearLayout leftIcon;
     private static String TAG = "ChangeSkinFragment";
     private RelativeLayout toobar;
+    private int theme;
 
     @Override
     protected int setLayoutResourceID() {
@@ -41,7 +42,19 @@ public class ChangeSkinFragment extends BaseFragment implements View.OnClickList
 
     @Override
     protected void init() {
+        getThemeType();
+    }
 
+    private int getThemeType() {
+        String themepack = SkinConfig.getCustomSkinPath(getActivity());
+        if (themepack.equals(SkinConfig.DEFALT_SKIN)){
+            return 0;
+        }else if (themepack.equals("/data/data/" + App.getApplication().getPackageName() + "/skin" + "/skin_brown.skin")){
+            return 1;
+        }else if (themepack.equals("/data/data/" + App.getApplication().getPackageName() + "/skin" + "/skin_black.skin")){
+            return 2;
+        }
+        return -1;
     }
 
 
@@ -117,13 +130,11 @@ public class ChangeSkinFragment extends BaseFragment implements View.OnClickList
                             @Override
                             public void onSuccess() {
 //                                Log.e(TAG, "loadSkinSuccess");
-                                Toast.makeText(getMContext(), "切换成功", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
                             public void onFailed() {
 //                                Log.e(TAG, "loadSkinFail");
-                                Toast.makeText(getMContext(), "切换失败", Toast.LENGTH_SHORT).show();
                             }
                         });
             }

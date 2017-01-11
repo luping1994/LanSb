@@ -1,9 +1,11 @@
 package com.suntrans.lanzhouwh.bean.general;
 
+import java.io.Serializable;
+
 /**
  * Created by Looney on 2017/1/4.
  */
-public class UserInfo {
+public class UserInfo implements Serializable{
 
     public String ruid;
     public String rusername;

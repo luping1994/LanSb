@@ -1,11 +1,14 @@
 package com.suntrans.lanzhouwh.api;
 
+import com.suntrans.lanzhouwh.bean.device.DeviceResult;
 import com.suntrans.lanzhouwh.bean.general.Result;
 import com.suntrans.lanzhouwh.bean.activate.ActiveResult;
 
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -49,4 +52,7 @@ public interface Api {
     @FormUrlEncoded
     @POST("/webservice.asmx/Query_account_info")
     Observable<Result> getUserInfo(@Field("account") String account);
+
+    @GET("/webservice.asmx/Query_all_device_info")
+    Observable<DeviceResult> getDeviceList(@Query("did") String did);
 }

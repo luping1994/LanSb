@@ -10,17 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.suntrans.lanzhouwh.App;
 import com.suntrans.lanzhouwh.R;
 import com.suntrans.lanzhouwh.adapter.DividerGridItemDecoration;
 import com.suntrans.lanzhouwh.api.RetrofitHelper;
-import com.suntrans.lanzhouwh.bean.general.Result;
-import com.suntrans.lanzhouwh.bean.general.UserInfo;
+import com.suntrans.lanzhouwh.bean.device.DeviceResult;
 import com.suntrans.lanzhouwh.utils.LogUtil;
 import com.suntrans.lanzhouwh.views.Switch;
 
@@ -31,9 +27,6 @@ import ren.solid.skinloader.base.SkinBaseFragment;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-
-import static com.suntrans.lanzhouwh.R.id.spinner1;
-import static com.suntrans.lanzhouwh.R.id.spinner2;
 
 /**
  * Created by Looney on 2016/11/26.
@@ -47,17 +40,18 @@ public class HardwareFragment extends SkinBaseFragment {
     private LinearLayoutManager manager;
     private MyAdapter adapter;
     private SwipeRefreshLayout refreshLayout;
+    private String did;
+    private String[] didList;
+
     public static HardwareFragment newInstance() {
         return new HardwareFragment();
     }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        TextView textView = new TextView(getActivity());
-        textView.setText("硬件管理");
-        textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT));
+        String deptidlist =  App.getSharedPreferences().getString("deptidlist", "-1");
+        didList = deptidlist.split(",");
         View view = inflater.inflate(R.layout.fragment_hardware,null,false);
-        LogUtil.i(TAG,"oncreate");
         return view;
    }
 
@@ -71,6 +65,7 @@ public class HardwareFragment extends SkinBaseFragment {
     }
 
     private void initView(View view) {
+
 //        spinner1 = (Spinner) view.findViewById(spinner1);
 //        spinner2 = (Spinner) view.findViewById(spinner2);
 //        lock = (RelativeLayout) view.findViewById(R.id.rl_lock);
@@ -87,12 +82,15 @@ public class HardwareFragment extends SkinBaseFragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getUserInfo();
+                getDeviceList(did);
             }
         });
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new DividerGridItemDecoration(getActivity()));
+
+
+        did = didList[0];
 
     }
 
@@ -232,16 +230,20 @@ public class HardwareFragment extends SkinBaseFragment {
 
     }
 
-    private void getUserInfo() {
-        String account = App.getSharedPreferences().getString("rusername", "-1");
-        if (account.equals("-1")) {
-            LogUtil.w(TAG, "账号不存在");
-            return;
-        }
-        RetrofitHelper.getApi().getUserInfo(account)
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getDeviceList(did);
+    }
+
+    private void getDeviceList(String did) {
+
+        LogUtil.i(TAG,"did=="+did);
+        RetrofitHelper.getApi().getDeviceList(did)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<Result>() {
+                .subscribe(new Subscriber<DeviceResult>() {
                     @Override
                     public void onCompleted() {
                         refreshLayout.setRefreshing(false);
@@ -250,20 +252,20 @@ public class HardwareFragment extends SkinBaseFragment {
                     @Override
                     public void onError(Throwable e) {
                         refreshLayout.setRefreshing(false);
-
                         e.printStackTrace();
                     }
 
                     @Override
-                    public void onNext(Result result) {
+                    public void onNext(DeviceResult result) {
                         refreshLayout.setRefreshing(false);
                         if (result != null) {
-                            UserInfo info = result.data.ds.get(0);
-                            LogUtil.i(TAG,info.toString());
+//                            System.out.println(result.data.toString());
                         }else {
 
                         }
                     }
                 });
     }
+
+
 }

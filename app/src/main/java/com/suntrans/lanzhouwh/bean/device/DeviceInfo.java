@@ -43,4 +43,28 @@ public class DeviceInfo {
     public String idcatetype;
     public String idtotorbran;
     public String selfreport;
+
+
+    @Override
+    public String toString() {
+        return "DeviceInfo{" +
+                "ssid='" + ssid + '\'' +
+                ", devname='" + devname + '\'' +
+                ", biename='" + biename + '\'' +
+                ", addr='" + addr + '\'' +
+                ", ziaddr='" + ziaddr + '\'' +
+                ", iddevtype='" + iddevtype + '\'' +
+                ", pcdiid='" + pcdiid + '\'' +
+                ", displayorder='" + displayorder + '\'' +
+                ", remark='" + remark + '\'' +
+                ", keyword='" + keyword + '\'' +
+                ", pssid='" + pssid + '\'' +
+                ", islock='" + islock + '\'' +
+                ", idusetype='" + idusetype + '\'' +
+                ", img='" + img + '\'' +
+                ", idcatetype='" + idcatetype + '\'' +
+                ", idtotorbran='" + idtotorbran + '\'' +
+                ", selfreport='" + selfreport + '\'' +
+                '}';
+    }
 }

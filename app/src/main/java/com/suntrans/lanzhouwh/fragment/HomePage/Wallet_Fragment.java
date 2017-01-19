@@ -11,16 +11,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.suntrans.lanzhouwh.activity.MainActivity;
 import com.suntrans.lanzhouwh.R;
-
-import ren.solid.skinloader.base.SkinBaseFragment;
+import com.suntrans.lanzhouwh.activity.MainActivity;
+import com.suntrans.lanzhouwh.activity.base.BasedFragment;
 
 /**
  * Created by Looney on 2016/12/9.
  */
 
-public class Wallet_Fragment extends SkinBaseFragment implements View.OnClickListener {
+public class Wallet_Fragment extends BasedFragment implements View.OnClickListener {
     /**
      * toolbar控件
      */

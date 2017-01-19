@@ -9,6 +9,7 @@
     android:layout_height="match_parent">
     <include layout="@layout/toolbar"/>
     <FrameLayout
+        android:background="@color/bg_color"
         android:layout_above="@+id/bottomBar"
         android:id="@+id/content1"
         android:layout_width="match_parent"

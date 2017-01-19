@@ -8,9 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.suntrans.lanzhouwh.R;
-import com.suntrans.lanzhouwh.activity.base.BaseActivity;
-import com.suntrans.lanzhouwh.api.RetrofitHelper;
-import com.suntrans.lanzhouwh.bean.activate.ActiveResult;
+import com.suntrans.lanzhouwh.activity.base.BasedActivity;
 import com.suntrans.lanzhouwh.utils.Converts;
 import com.suntrans.lanzhouwh.utils.UiUtils;
 import com.suntrans.lanzhouwh.views.EditView;
@@ -19,15 +17,12 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Looney on 2016/12/8.
  */
 
-public class ActivateStep2_Activity extends BaseActivity {
+public class ActivateStep2_Activity extends BasedActivity {
     ImageView leftIcon;
     TextView titleName;
 
@@ -86,30 +81,30 @@ public class ActivateStep2_Activity extends BaseActivity {
         int i = 100000+random.nextInt(899999);
         pw=pw.replace(" ","");
         String salt = String.valueOf(i);
-        RetrofitHelper.getApi().activeAcount(account,mobile,pw,salt)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<ActiveResult>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        UiUtils.showToast("激活失败");
-                    }
-
-                    @Override
-                    public void onNext(ActiveResult activeResult) {
-                        if (activeResult.result.equals("ok")){
-                            UiUtils.showToast("激活成功");
-                            setResult(200);
-                            finish();
-                        }else {
-                            UiUtils.showToast(activeResult.reason);
-                        }
-                    }
-                });
+//        RetrofitHelper.getApi().activeAcount(account,mobile,pw,salt)
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(Schedulers.io())
+//                .subscribe(new Subscriber<ActiveResult>() {
+//                    @Override
+//                    public void onCompleted() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        UiUtils.showToast("激活失败");
+//                    }
+//
+//                    @Override
+//                    public void onNext(ActiveResult activeResult) {
+//                        if (activeResult.result.equals("ok")){
+//                            UiUtils.showToast("激活成功");
+//                            setResult(200);
+//                            finish();
+//                        }else {
+//                            UiUtils.showToast(activeResult.reason);
+//                        }
+//                    }
+//                });
     }
 }

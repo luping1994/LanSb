@@ -21,26 +21,40 @@
         android:supportsRtl="true"
         android:name="com.suntrans.lanzhouwh.App"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name="com.suntrans.lanzhouwh.activity.MainActivity">
+        <activity android:name="com.suntrans.lanzhouwh.activity.MainActivity" android:screenOrientation="portrait" >
 
         </activity>
-        <activity android:name="com.suntrans.lanzhouwh.activity.LoginActivity">
+        <activity android:name="com.suntrans.lanzhouwh.activity.LoginActivity" android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name="com.suntrans.lanzhouwh.activity.PersonalActivity"/>
-        <activity android:name="com.suntrans.lanzhouwh.activity.ActivateStep1_Activity"/>
-        <activity android:name="com.suntrans.lanzhouwh.activity.FindpasswordActivity"/>
-        <activity android:name="com.suntrans.lanzhouwh.activity.AddStaffActivity"/>
-        <activity android:name=".activity.Setting_Activity"/>
-        <activity android:name=".activity.ActivateStep2_Activity"/>
+        <activity android:name="com.suntrans.lanzhouwh.activity.PersonalActivity" android:screenOrientation="portrait" />
+        <activity android:name="com.suntrans.lanzhouwh.activity.ActivateStep1_Activity" android:screenOrientation="portrait" />
+        <activity android:name="com.suntrans.lanzhouwh.activity.FindpasswordActivity" android:screenOrientation="portrait" />
+        <activity android:name="com.suntrans.lanzhouwh.activity.AddStaffActivity" android:screenOrientation="portrait" />
+        <activity android:name=".activity.Setting_Activity" android:screenOrientation="portrait" />
+        <activity android:name=".activity.ActivateStep2_Activity" android:screenOrientation="portrait" />
 
-        <activity android:name=".activity.WelcomeActivity">
+        <activity android:name=".activity.WelcomeActivity" android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+        <service android:name=".service.MainService"/>
+        <service android:name=".service.Service"/>
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:theme="@android:style/Theme.Translucent" />
 
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.suntrans.lanzhouwh.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+    </application>
 </manifest>

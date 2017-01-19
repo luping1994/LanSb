@@ -1,4 +1,4 @@
-package com.suntrans.lanzhouwh.fragment.base;
+package com.suntrans.lanzhouwh.fragment.theme;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -8,14 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ren.solid.skinloader.base.SkinBaseFragment;
+import com.suntrans.lanzhouwh.activity.base.BasedFragment;
 
 /**
  * Created by _SOLID
  * Date:2016/3/30
  * Time:11:30
  */
-public abstract class BaseFragment extends SkinBaseFragment {
+public abstract class ThemeBaseFragment extends BasedFragment {
 
     private View mContentView;
     private Context mContext;

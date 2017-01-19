@@ -14,9 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.suntrans.lanzhouwh.R;
-import com.suntrans.lanzhouwh.activity.base.BaseActivity;
-import com.suntrans.lanzhouwh.api.RetrofitHelper;
-import com.suntrans.lanzhouwh.bean.activate.ActiveResult;
+import com.suntrans.lanzhouwh.activity.base.BasedActivity;
 import com.suntrans.lanzhouwh.utils.UiUtils;
 import com.suntrans.lanzhouwh.views.EditView;
 
@@ -26,15 +24,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Looney on 2016/12/8.
  */
 
-public class ActivateStep1_Activity extends BaseActivity {
+public class ActivateStep1_Activity extends BasedActivity {
     ImageView leftIcon;
     TextView titleName;
 
@@ -209,45 +204,45 @@ public class ActivateStep1_Activity extends BaseActivity {
 
     //检测账号是否存在
     private void checkAccount(String s) {
-        RetrofitHelper.getApi().checkAccountExist(s)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<ActiveResult>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(ActiveResult activeResult) {
-                        if (activeResult == null) {
-                            return;
-                        }
-                        if (activeResult.result.equals("false")) {
-//                            dialog.dismiss();
-                            UiUtils.showToast(activeResult.reason);
-                            return;
-                        }
-                        if (activeResult.result.equals("false")) {
-//                            dialog.dismiss();
-                            String verificationCode = yanzhengma.getText().toString();
-                            SMSSDK.submitVerificationCode("86", phone1, verificationCode);
-
-//                            Intent intent = new Intent();
-//                            intent.putExtra("account", account1);
-//                            intent.putExtra("phone", phone1);
-//                            intent.setClass(ActivateStep1_Activity.this, ActivateStep2_Activity.class);
-//                            startActivity(intent);
-//                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                            return;
-                        }
-                    }
-                });
+//        RetrofitHelper.getApi().checkAccountExist(s)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Subscriber<ActiveResult>() {
+//                    @Override
+//                    public void onCompleted() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onNext(ActiveResult activeResult) {
+//                        if (activeResult == null) {
+//                            return;
+//                        }
+//                        if (activeResult.result.equals("false")) {
+////                            dialog.dismiss();
+//                            UiUtils.showToast(activeResult.reason);
+//                            return;
+//                        }
+//                        if (activeResult.result.equals("false")) {
+////                            dialog.dismiss();
+//                            String verificationCode = yanzhengma.getText().toString();
+//                            SMSSDK.submitVerificationCode("86", phone1, verificationCode);
+//
+////                            Intent intent = new Intent();
+////                            intent.putExtra("account", account1);
+////                            intent.putExtra("phone", phone1);
+////                            intent.setClass(ActivateStep1_Activity.this, ActivateStep2_Activity.class);
+////                            startActivity(intent);
+////                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+//                            return;
+//                        }
+//                    }
+//                });
 
     }
 

@@ -13,18 +13,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.suntrans.lanzhouwh.App;
 import com.suntrans.lanzhouwh.R;
-import com.suntrans.lanzhouwh.activity.base.BaseActivity;
+import com.suntrans.lanzhouwh.activity.base.BasedActivity;
 import com.suntrans.lanzhouwh.fragment.HomePage.About_Fragment;
 import com.suntrans.lanzhouwh.fragment.HomePage.Comapny_Fragment;
 import com.suntrans.lanzhouwh.fragment.HomePage.Main_fragment;
 import com.suntrans.lanzhouwh.fragment.HomePage.Main_fragment_staff;
 import com.suntrans.lanzhouwh.fragment.HomePage.Wallet_Fragment;
-import com.suntrans.lanzhouwh.fragment.theme.ChangeSkinFragment;
+import com.suntrans.lanzhouwh.fragment.theme.ChangeSkinFragmentTheme;
 import com.suntrans.lanzhouwh.utils.UiUtils;
 import com.suntrans.lanzhouwh.views.CircleImageView;
+import com.tencent.bugly.Bugly;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BasedActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     FrameLayout content;
     NavigationView navView;
     public DrawerLayout drawerLayout;
@@ -38,6 +40,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Bugly.init(getApplicationContext(), "678ba11223", false);
         initView();
         setupNavagationView();
         initFragments();
@@ -61,7 +64,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         View view = navView.inflateHeaderView(R.layout.nav_header_main);
         if (rusergid.equals("1")) {
             navView.inflateMenu(R.menu.menu_nav);
-        }else {
+        } else {
             navView.inflateMenu(R.menu.menu_nav_staff);
         }
         CircleImageView nav = (CircleImageView) view.findViewById(R.id.nav_head_avatar);
@@ -74,12 +77,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void initFragments() {
-        if (rusergid.equals("1")){
+        if (rusergid.equals("1")) {
             Main_fragment main_fragment = Main_fragment.newInstance();
             Comapny_Fragment comapnyFragment = Comapny_Fragment.newInstance();
             Wallet_Fragment wallet_fragment = Wallet_Fragment.newInstance();
             About_Fragment about_fragment = About_Fragment.newInstance();
-            ChangeSkinFragment fragment = new ChangeSkinFragment();
+            ChangeSkinFragmentTheme fragment = new ChangeSkinFragmentTheme();
             fragments = new Fragment[]{
                     main_fragment,
                     comapnyFragment,
@@ -88,12 +91,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     fragment
             };
             getSupportFragmentManager().beginTransaction().replace(R.id.content, main_fragment).commit();
-        }else if (rusergid.equals("2")){
+        } else if (rusergid.equals("2")) {
             Main_fragment_staff main_fragment = Main_fragment_staff.newInstance();
             Comapny_Fragment comapnyFragment = Comapny_Fragment.newInstance();
             Wallet_Fragment wallet_fragment = Wallet_Fragment.newInstance();
             About_Fragment about_fragment = About_Fragment.newInstance();
-            ChangeSkinFragment fragment = new ChangeSkinFragment();
+            ChangeSkinFragmentTheme fragment = new ChangeSkinFragmentTheme();
             fragments = new Fragment[]{
                     main_fragment,
                     comapnyFragment,
@@ -120,7 +123,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        if (!rusergid.equals("1")&&!rusergid.equals("2")){
+        if (!rusergid.equals("1") && !rusergid.equals("2")) {
             return true;
         }
         switch (item.getItemId()) {
@@ -173,7 +176,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         System.out.println("onresume");
     }
 
-
     private long[] mHits = new long[2];
 
     @Override
@@ -190,11 +192,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
             mHits[mHits.length - 1] = SystemClock.uptimeMillis();
             if (mHits[0] >= (SystemClock.uptimeMillis() - 2000)) {
-                finish();
+//                finish();
+                android.os.Process.killProcess(android.os.Process.myPid());
             } else {
                 UiUtils.showToast("再按一次退出");
             }
             return true;
+//            Intent intent = new Intent(Intent.ACTION_MAIN);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            intent.addCategory(Intent.CATEGORY_HOME);
+//            startActivity(intent);
+//            return true;
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -202,7 +210,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
 }

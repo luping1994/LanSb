@@ -1,226 +1,471 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fitsSystemWindows="true"
+    skin:enable="true"
+    android:background="@color/colorPrimary"
     android:clipToPadding="true"
-   >
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
     <LinearLayout
-        xmlns:skin="http://schemas.android.com/android/skin"
-        skin:enable="true"
         android:layout_width="fill_parent"
         android:layout_height="50dip"
         android:background="@color/colorPrimary"
-        android:orientation="horizontal"
         android:gravity="center"
-        >
+        android:orientation="horizontal"
+        skin:enable="true">
+
         <LinearLayout
+            android:id="@+id/layout_back"
             android:layout_width="wrap_content"
             android:layout_height="50dip"
-            android:orientation="horizontal"
-            android:id="@+id/layout_back"
-            android:background="?attr/selectableItemBackground">
+            android:background="?attr/selectableItemBackground"
+            android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="20dip"
                 android:layout_height="35dip"
                 android:layout_gravity="center"
-                android:paddingRight="-8dip"
-                android:src="@drawable/ic_back_normal"
                 android:contentDescription="返回"
-                />
+                android:paddingRight="-8dip"
+                android:src="@drawable/ic_back_normal" />
+
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="50dip"
-                android:gravity="center"
-                android:textSize="15sp"
-                android:textColor="@color/white"
                 android:layout_marginRight="8dip"
-                android:text="返回"/>
+                android:gravity="center"
+                android:text="返回"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tx_title"
             android:layout_width="0dip"
             android:layout_height="fill_parent"
-            android:id="@+id/tx_title"
-            android:text="设置"
-            android:gravity="center"
+            android:layout_weight="1"
             android:ellipsize="end"
-            android:maxLines="1"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:layout_weight="1"/>
-        <LinearLayout
-            android:layout_width="50dip"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
             android:gravity="center"
+            android:maxLines="1"
+            android:text="设置"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
-            android:id="@+id/layout_info">
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_width="30dip"
-                android:layout_height="30dip"
-                android:id="@+id/setting"/>
+        <LinearLayout
+            android:id="@+id/ll_huifu"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+          <TextView
+              android:gravity="center"
+              android:textColor="@color/white"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:text="恢复默认"/>
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bg_color"
         android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dip"
-            android:orientation="horizontal"
-            android:background="@color/white"
-            android:id="@+id/layout1"
-            android:layout_marginTop="20dip"
-            android:fillViewport="true">
-            <TextView
-                android:layout_width="0dip"
-                android:layout_height="48dip"
-                android:layout_weight="1"
-                android:text="烟雾阈值"
-                android:id="@+id/name_smoke"
-                android:paddingLeft="15dip"
-                android:textSize="@dimen/content_text_size"
-                android:textColor="@color/tx_color"
-                android:gravity="center|left"/>
-            <TextView
-                android:layout_width="0dip"
-                android:layout_height="48dip"
-                android:layout_weight="1"
-                android:layout_marginRight="30dip"
-                android:id="@+id/value_smoke"
-                android:textSize="@dimen/content_text_size"
-                android:text="0"
-                android:textCursorDrawable="@null"
-                android:textColor="@color/black"
-                android:gravity="center|right"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dip"
-            android:orientation="horizontal"
-            android:background="@color/white"
-            android:id="@+id/layout2"
-            android:layout_marginTop="20dip"
-            android:fillViewport="true">
-            <TextView
-                android:layout_width="0dip"
-                android:layout_height="48dip"
-                android:layout_weight="1"
-                android:text="温度阈值"
-                android:id="@+id/name_tmp"
-                android:paddingLeft="15dip"
-                android:textSize="@dimen/content_text_size"
-                android:textColor="@color/tx_color"
-                android:gravity="center|left"/>
-            <TextView
-                android:layout_width="0dip"
-                android:layout_height="48dip"
-                android:layout_weight="1"
-                android:layout_marginRight="30dip"
-                android:id="@+id/value_tmp"
-                android:textSize="@dimen/content_text_size"
-                android:text="0"
-                android:textCursorDrawable="@null"
-                android:textColor="@color/black"
-                android:gravity="center|right"/>
-        </LinearLayout>
-        <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="48dip"
-            android:orientation="horizontal"
-            android:background="@color/white"
-            android:id="@+id/layout3"
-            android:layout_marginTop="20dip"
-            android:fillViewport="true">
-            <TextView
-                android:layout_width="0dip"
-                android:layout_height="48dip"
-                android:layout_weight="1"
-                android:text="振动阈值"
-                android:id="@+id/name_shake"
-                android:paddingLeft="15dip"
-                android:textSize="@dimen/content_text_size"
-                android:textColor="@color/tx_color"
-                android:gravity="center|left"/>
-            <TextView
-                android:layout_width="0dip"
-                android:layout_height="48dip"
-                android:layout_weight="1"
-                android:layout_marginRight="30dip"
-                android:id="@+id/value_shake"
-                android:textSize="@dimen/content_text_size"
-                android:text="0"
-                android:textCursorDrawable="@null"
-                android:textColor="@color/black"
-                android:gravity="center|right"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dip"
-            android:orientation="horizontal"
-            android:background="@color/white"
-            android:id="@+id/layout4"
-            android:layout_marginTop="20dip"
-            android:fillViewport="true">
-            <TextView
-                android:layout_width="0dip"
-                android:layout_height="48dip"
-                android:layout_weight="1"
-                android:text="PM2.5阈值"
-                android:id="@+id/name_pm"
-                android:paddingLeft="15dip"
-                android:textSize="@dimen/content_text_size"
-                android:textColor="@color/tx_color"
-                android:gravity="center|left"/>
-            <TextView
-                android:layout_width="0dip"
-                android:layout_height="48dip"
-                android:layout_weight="1"
-                android:layout_marginRight="30dip"
-                android:id="@+id/value_pm"
-                android:textSize="@dimen/content_text_size"
-                android:text="0"
-                android:textCursorDrawable="@null"
-                android:textColor="@color/black"
-                android:gravity="center|right"/>
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dip"
-            android:orientation="horizontal"
-            android:background="@drawable/bg_layout_listall"
-            android:id="@+id/layout5"
-            android:layout_marginTop="20dip"
-            android:visibility="gone"
-            android:fillViewport="true">
-            <TextView
-                android:layout_width="0dip"
-                android:layout_height="48dip"
-                android:layout_weight="1"
-                android:text="开关状态"
-                android:id="@+id/name"
-                android:paddingLeft="15dip"
-                android:textSize="@dimen/content_text_size"
-                android:textColor="@color/tx_color"
-                android:gravity="center|left"/>
-          <ImageView
-              android:layout_width="15dip"
-              android:layout_height="23dip"
-              android:layout_gravity="center"
-              android:layout_marginRight="15dip"
-              android:scaleType="fitXY"
-             />
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:fillViewport="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="@color/white"
+                android:fillViewport="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:paddingLeft="15dip"
+                    android:text="温度"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:gravity="center|right"
+                    android:text="阈值"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tem_value"
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:cursorVisible="true"
+                    android:gravity="center"
+                    android:inputType="numberSigned"
+                    android:paddingLeft="15dip"
+                    android:text="50"
+                    android:textColor="@color/blue"
+                    android:textCursorDrawable="@null"
+                    android:textSize="19sp" />
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center|right"
+                    android:text="开关"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <com.suntrans.lanzhouwh.views.Switch
+                    android:id="@+id/tem_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="15dip" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="@color/white"
+                android:fillViewport="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:paddingLeft="15dip"
+                    android:text="烟雾"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:gravity="center|right"
+                    android:text="阈值"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/smoke_value"
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:cursorVisible="true"
+                    android:gravity="center"
+                    android:inputType="numberSigned"
+                    android:paddingLeft="15dip"
+                    android:text="50"
+                    android:textColor="@color/blue"
+                    android:textCursorDrawable="@null"
+                    android:textSize="19sp" />
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center|right"
+                    android:text="开关"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <com.suntrans.lanzhouwh.views.Switch
+                    android:id="@+id/smoke_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="15dip" />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="@color/white"
+                android:fillViewport="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:paddingLeft="15dip"
+                    android:text="PM2.5"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:gravity="center|right"
+                    android:text="阈值"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/pm_value"
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:cursorVisible="true"
+                    android:gravity="center"
+                    android:inputType="numberSigned"
+                    android:paddingLeft="15dip"
+                    android:text="50"
+                    android:textColor="@color/blue"
+                    android:textCursorDrawable="@null"
+                    android:textSize="19sp" />
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center|right"
+                    android:text="开关"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <com.suntrans.lanzhouwh.views.Switch
+                    android:id="@+id/pm_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="15dip" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="@color/white"
+                android:fillViewport="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:paddingLeft="15dip"
+                    android:text="甲醛"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:gravity="center|right"
+                    android:text="阈值"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/jiaquan_value"
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:cursorVisible="true"
+                    android:gravity="center"
+                    android:inputType="numberSigned"
+                    android:paddingLeft="15dip"
+                    android:text="50"
+                    android:textColor="@color/blue"
+                    android:textCursorDrawable="@null"
+                    android:textSize="19sp" />
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center|right"
+                    android:text="开关"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <com.suntrans.lanzhouwh.views.Switch
+                    android:id="@+id/jiaquan_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="15dip" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="@color/white"
+                android:fillViewport="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:paddingLeft="15dip"
+                    android:text="振动"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:gravity="center|right"
+                    android:text="阈值"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/zhendong_value"
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:cursorVisible="true"
+                    android:gravity="center"
+                    android:inputType="numberSigned"
+                    android:paddingLeft="15dip"
+                    android:text="50"
+                    android:textColor="@color/blue"
+                    android:textCursorDrawable="@null"
+                    android:textSize="19sp" />
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center|right"
+                    android:text="开关"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <com.suntrans.lanzhouwh.views.Switch
+                    android:id="@+id/zhengdong_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="15dip" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="@color/white"
+                android:fillViewport="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:paddingLeft="15dip"
+                    android:text="语音报警"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center|right"
+                    android:text="开关"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <com.suntrans.lanzhouwh.views.Switch
+                    android:id="@+id/yuyin_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="15dip" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="@color/white"
+                android:fillViewport="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:paddingLeft="15dip"
+                    android:text="有人进入报警"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="50dip"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:gravity="center|right"
+                    android:text="开关"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <com.suntrans.lanzhouwh.views.Switch
+                    android:id="@+id/ren_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="15dip" />
+            </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

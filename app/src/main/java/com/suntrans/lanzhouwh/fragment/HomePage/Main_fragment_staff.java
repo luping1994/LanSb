@@ -21,17 +21,18 @@ import com.roughike.bottombar.OnTabSelectListener;
 import com.suntrans.lanzhouwh.R;
 import com.suntrans.lanzhouwh.activity.MainActivity;
 import com.suntrans.lanzhouwh.activity.Setting_Activity;
+import com.suntrans.lanzhouwh.activity.base.BasedFragment;
+import com.suntrans.lanzhouwh.bean.userinfo.ListInfo;
 import com.suntrans.lanzhouwh.fragment.Innerroom.RuleFragment;
 import com.suntrans.lanzhouwh.fragment.Main.HardwareFragment;
 import com.suntrans.lanzhouwh.fragment.Main.InnerroomFragment;
-
-import ren.solid.skinloader.base.SkinBaseFragment;
+import com.suntrans.lanzhouwh.utils.UiUtils;
 
 /**
  * Created by Looney on 2016/11/28.
  * des:进入app默认的fragment
  */
-public class Main_fragment_staff extends SkinBaseFragment implements OnTabSelectListener, View.OnClickListener {
+public class Main_fragment_staff extends BasedFragment implements OnTabSelectListener, View.OnClickListener {
 
     private View rootView;
     private BottomBar bottomBar;
@@ -102,10 +103,7 @@ public class Main_fragment_staff extends SkinBaseFragment implements OnTabSelect
 //                        System.out.println("我是硬件管理");
                         break;
                     case 1:
-                        System.out.println("我是室内环境");
-                        Intent intent = new Intent(getActivity(), Setting_Activity.class);
-                        startActivity(intent);
-                        getActivity().overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+
                         break;
                     case 2:
                         System.out.println("我是用电信息");

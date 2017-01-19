@@ -14,13 +14,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.suntrans.lanzhouwh.R;
+import com.suntrans.lanzhouwh.activity.base.BasedFragment;
 import com.suntrans.lanzhouwh.adapter.DividerGridItemDecoration;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import ren.solid.skinloader.base.SkinBaseFragment;
 import ren.solid.skinloader.entity.MyImageView;
 
 /**
@@ -28,7 +28,7 @@ import ren.solid.skinloader.entity.MyImageView;
  * des:用电信息fragment
  */
 
-public class EleinfoFragment extends SkinBaseFragment {
+public class EleinfoFragment extends BasedFragment {
     private RecyclerView recyclerView;
     private SwipeRefreshLayout refreshLayout;
     private LinearLayoutManager manager;
@@ -44,7 +44,7 @@ public class EleinfoFragment extends SkinBaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         initData();
         recyclerView = (RecyclerView) view.findViewById(R.id.recycleview);
-        refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe);
+//        refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe);
         manager =new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(manager);
         recyclerView.addItemDecoration(new DividerGridItemDecoration(getActivity()));

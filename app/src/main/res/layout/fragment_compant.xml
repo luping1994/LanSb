@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
     android:orientation="vertical"
-    android:background="@color/bg_color"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include layout="@layout/toolbar"/>
     <include layout="@layout/item_company"/>
     <android.support.v7.widget.RecyclerView
+        android:background="@color/bg_color"
         android:id="@+id/recycleview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

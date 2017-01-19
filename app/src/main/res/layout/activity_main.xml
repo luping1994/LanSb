@@ -8,6 +8,8 @@
     >
 
     <LinearLayout
+        skin:enable="true"
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:fitsSystemWindows="true"

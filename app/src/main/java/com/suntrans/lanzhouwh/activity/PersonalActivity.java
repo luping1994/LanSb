@@ -12,13 +12,13 @@ import android.widget.TextView;
 
 import com.suntrans.lanzhouwh.App;
 import com.suntrans.lanzhouwh.R;
-import com.suntrans.lanzhouwh.activity.base.BaseActivity;
+import com.suntrans.lanzhouwh.activity.base.BasedActivity;
 
 /**
  * Created by Looney on 2016/12/7.
  */
 
-public class PersonalActivity extends BaseActivity {
+public class PersonalActivity extends BasedActivity {
     TextView tvRight;
     TextView titleName;
     private int theme = 0;
@@ -48,10 +48,9 @@ public class PersonalActivity extends BaseActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         killAll();
                         SharedPreferences.Editor editor = App.getSharedPreferences().edit();
-                        editor.putString("deptidlist","-1");
-                        editor.putString("ruid","-1");
-                        editor.putString("rusername","-1");
-                        editor.putString("rusergid","-1");
+                        editor.putString("access_token","-1");
+                        editor.putString("expires_in","-1");
+                        editor.putLong("firsttime",-1l);
                         editor.commit();
                         Intent intent = new Intent(PersonalActivity.this,LoginActivity.class);
                         startActivity(intent);

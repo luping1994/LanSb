@@ -14,21 +14,20 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.suntrans.lanzhouwh.R;
 import com.suntrans.lanzhouwh.activity.AddStaffActivity;
 import com.suntrans.lanzhouwh.activity.MainActivity;
-import com.suntrans.lanzhouwh.R;
+import com.suntrans.lanzhouwh.activity.base.BasedFragment;
 import com.suntrans.lanzhouwh.adapter.DividerGridItemDecoration;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-import ren.solid.skinloader.base.SkinBaseFragment;
-
 /**
  * Created by Looney on 2016/12/7.
  */
 
-public class Comapny_Fragment extends SkinBaseFragment implements View.OnClickListener {
+public class Comapny_Fragment extends BasedFragment implements View.OnClickListener {
 
     private TextView titleName;
     private TextView textView;
@@ -107,7 +106,7 @@ public class Comapny_Fragment extends SkinBaseFragment implements View.OnClickLi
 
         @Override
         public int getItemCount() {
-            return 100;
+            return 0;
         }
     }
 

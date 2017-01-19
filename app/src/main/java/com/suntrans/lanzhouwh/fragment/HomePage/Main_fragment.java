@@ -16,23 +16,23 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
-import com.suntrans.lanzhouwh.activity.MainActivity;
 import com.suntrans.lanzhouwh.R;
+import com.suntrans.lanzhouwh.activity.MainActivity;
 import com.suntrans.lanzhouwh.activity.Setting_Activity;
+import com.suntrans.lanzhouwh.activity.base.BasedFragment;
+import com.suntrans.lanzhouwh.bean.userinfo.ListInfo;
 import com.suntrans.lanzhouwh.fragment.Main.EleinfoFragment;
 import com.suntrans.lanzhouwh.fragment.Main.HardwareFragment;
 import com.suntrans.lanzhouwh.fragment.Main.InnerroomFragment;
-
-import ren.solid.skinloader.base.SkinBaseFragment;
+import com.suntrans.lanzhouwh.utils.UiUtils;
 
 /**
  * Created by Looney on 2016/11/28.
  * des:进入app默认的fragment
  */
-public class Main_fragment extends SkinBaseFragment implements OnTabSelectListener, View.OnClickListener {
+public class Main_fragment extends BasedFragment implements OnTabSelectListener, View.OnClickListener {
 
     private View rootView;
     private BottomBar bottomBar;
@@ -105,13 +105,25 @@ public class Main_fragment extends SkinBaseFragment implements OnTabSelectListen
 //                        System.out.println("我是硬件管理");
                         break;
                     case 1:
-                        System.out.println("我是室内环境");
+                        if (fragments[1]==null){
+                            break;
+                        }
+                        ListInfo info = ((InnerroomFragment)fragments[1]).getCurrentSix();
+                        if (info==null){
+                            UiUtils.showToast("无法获取第六感信息,请检查你的网络");
+                            break;
+                        }
+                        String id = info.id;
+                        if (info.isOnline.equals("0")){
+                            UiUtils.showToast("当前第六感不在线,无法配置");
+                            return;
+                        }
                         Intent intent = new Intent(getActivity(), Setting_Activity.class);
+                        intent.putExtra("id",id);
                         startActivity(intent);
                         getActivity().overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
                         break;
                     case 2:
-                        System.out.println("我是用电信息");
                         break;
                 }
                 break;

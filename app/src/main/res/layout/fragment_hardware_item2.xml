@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="35dp"
-    android:background="@color/grey"
+    android:layout_height="25dp"
+    android:background="#bdbdbd"
     android:paddingLeft="16dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center|left"
-        android:text="全部设备"
+        android:text="设备列表"
         android:textColor="@color/white"
-        android:textSize="@dimen/title_size">
+        android:textSize="12sp">
 
     </TextView>
 
@@ -23,6 +23,7 @@
         android:background="?attr/selectableItemBackground">
 
         <ImageView
+            android:visibility="invisible"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"

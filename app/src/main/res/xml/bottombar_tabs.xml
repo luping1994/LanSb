@@ -6,10 +6,10 @@
         title="硬件管理" />
     <tab
         id="@+id/tab_two"
-        icon="@drawable/ic_room"
+        icon="@drawable/ic_inner"
         title="室内环境" />
     <tab
         id="@+id/tab_three"
-        icon="@drawable/ic_room"
+        icon="@drawable/ic_elec1"
         title="用电信息" />
 </tabs>

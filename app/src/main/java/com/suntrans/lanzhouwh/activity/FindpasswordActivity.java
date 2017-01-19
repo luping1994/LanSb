@@ -9,14 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.suntrans.lanzhouwh.R;
-import com.suntrans.lanzhouwh.activity.base.BaseActivity;
+import com.suntrans.lanzhouwh.activity.base.BasedActivity;
 import com.suntrans.lanzhouwh.utils.StatusBarCompat;
 
 /**
  * Created by Looney on 2016/12/8.
  */
 
-public class FindpasswordActivity extends BaseActivity {
+public class FindpasswordActivity extends BasedActivity {
     ImageView leftIcon;
     TextView titleName;
 

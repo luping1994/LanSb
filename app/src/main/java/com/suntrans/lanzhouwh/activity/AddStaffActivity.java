@@ -7,13 +7,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.suntrans.lanzhouwh.R;
-import com.suntrans.lanzhouwh.activity.base.BaseActivity;
+import com.suntrans.lanzhouwh.activity.base.BasedActivity;
 
 /**
  * Created by Looney on 2016/12/8.
  */
 
-public class AddStaffActivity extends BaseActivity {
+public class AddStaffActivity extends BasedActivity {
     ImageView leftIcon;
     TextView titleName;
 

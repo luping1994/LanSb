@@ -3,11 +3,11 @@
     <string name="open_drawer">打开抽屉</string>
     <string name="close_drawer">关闭抽屉</string>
     <string name="login">登录</string>
-    <string name="company_name">广州三川控制系统工程设备有限公司</string>
     <string name="logon_mima">请输入密码</string>
     <string name="login_account">请输入账号</string>
     <string name="setting_par">参数配置</string>
     <string name="back">返回</string>
     <string name="query">查询</string>
     <string name="activate">激活</string>
+    <string name="company_name">Copyright © suntrans. All rights reserved</string>
 </resources>

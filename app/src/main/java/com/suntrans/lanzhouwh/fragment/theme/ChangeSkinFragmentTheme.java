@@ -15,7 +15,6 @@ import com.suntrans.lanzhouwh.App;
 import com.suntrans.lanzhouwh.R;
 import com.suntrans.lanzhouwh.activity.AddStaffActivity;
 import com.suntrans.lanzhouwh.activity.MainActivity;
-import com.suntrans.lanzhouwh.fragment.base.BaseFragment;
 
 import java.io.File;
 
@@ -28,10 +27,10 @@ import ren.solid.skinloader.load.SkinManager;
  * Date:2016/4/14
  * Time:10:44
  */
-public class ChangeSkinFragment extends BaseFragment implements View.OnClickListener {
+public class ChangeSkinFragmentTheme extends ThemeBaseFragment implements View.OnClickListener {
     private TextView titleName;
     LinearLayout leftIcon;
-    private static String TAG = "ChangeSkinFragment";
+    private static String TAG = "ChangeSkinFragmentTheme";
     private RelativeLayout toobar;
     private int theme;
 

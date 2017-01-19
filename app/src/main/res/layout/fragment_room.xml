@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:skin="http://schemas.android.com/android/skin"
     xmlns:suntrans="http://www.suntrans.net/"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"></Spinner>
+
     <android.support.design.widget.TabLayout
-        app:tabSelectedTextColor="@color/white"
-        app:tabIndicatorColor="@color/white"
-        skin:enable="true"
-        android:background="@color/colorPrimary"
-        app:tabTextColor="@color/tablayout_textcolor"
         android:id="@+id/tablayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     </android.support.design.widget.TabLayout>
 
-    <com.suntrans.lanzhouwh.views.IViewPager
-        android:id="@+id/vp"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
+    <in.srain.cube.views.ptr.PtrClassicFrameLayout
+        android:id="@+id/refreshlayout"
+        android:layout_width="match_parent"
         android:layout_weight="1"
-        android:background="@color/bg_color"
-        suntrans:enabled="false" />
+        android:layout_height="0dp">
+        <com.suntrans.lanzhouwh.views.IViewPager
+            android:id="@+id/vp"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_color"
+            suntrans:enabled="false" />
+    </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+
+
 </LinearLayout>

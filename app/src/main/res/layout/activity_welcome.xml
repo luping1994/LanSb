@@ -4,10 +4,35 @@
     android:background="#55aaaaaa"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ImageView
-        android:src="@drawable/welcome"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/logo_ll"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/ic_logo"
+            android:layout_width="75dp"
+            android:layout_height="75dp" />
+    </LinearLayout>
+
+   <TextView
+       android:layout_below="@+id/logo_ll"
+       android:layout_marginTop="20dp"
+       android:gravity="center"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textColor="#b85c38"
+       android:text="万华互联大厦"
+       android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/tv_bottom"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:textColor="#b85c38"
+        android:text="@string/company_name"
+        android:textSize="15sp"/>
 </RelativeLayout>

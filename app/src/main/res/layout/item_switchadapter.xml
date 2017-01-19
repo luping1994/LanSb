@@ -19,42 +19,36 @@
             android:src="@mipmap/ic_bulb_off" />
 
         <RelativeLayout
+            android:layout_marginLeft="20dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
             android:layout_weight="1"
             >
-
             <LinearLayout
+                android:gravity="center"
                 android:layout_centerVertical="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="15dp"
-                android:orientation="horizontal">
-
+                android:orientation="vertical">
                 <TextView
-                    android:id="@+id/title_name"
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="名称:"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/content_text_size" />
-
-                <TextView
                     android:id="@+id/name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
+                    android:textSize="@dimen/subtitle_size"
                     android:gravity="center|left"
-                    android:maxLines="1"
-                    android:text="总开关"
-                    android:textColor="@color/blue"
-                    android:textSize="@dimen/content_text_size" />
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:text="名称:"/>
+                <TextView
+                    android:id="@+id/type"
+                    android:textSize="@dimen/subtitle_size"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center|left"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:text="类型:"/>
 
+            </LinearLayout>
         </RelativeLayout>
 
         <com.suntrans.lanzhouwh.views.Switch

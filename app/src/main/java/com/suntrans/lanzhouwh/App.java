@@ -29,11 +29,16 @@ public class App extends SkinBaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+//        if (LeakCanary.isInAnalyzerProcess(this)) {
+//            // This process is dedicated to LeakCanary for heap analysis.
+//            // You should not init your app in this process.
+//            return;
+//        }
+//        LeakCanary.install(this);
 //        CrashReport.initCrashReport(getApplicationContext(), "900055973", true);//初始化腾讯bug分析工具
         application=this;
         mainTid=android.os.Process.myTid();
         mHandler=new Handler();
-        SMSSDK.initSDK(this,appKey,APPSECRET);
         try {
             CopySkinFromAssets("skin_black.skin");
           LogUtil.i("app:"+ CopySkinFromAssets("skin_brown.skin"));
@@ -89,7 +94,9 @@ public class App extends SkinBaseApplication {
         File file= new File(dir, SqliteFileName);
         InputStream inputStream = null;
         OutputStream outputStream =null;
-
+//        if (file.exists()){
+//            file.delete();
+//        }
         //通过IO流的方式，将assets目录下的数据库文件，写入到SD卡中。
         if (!file.exists()) {
             try {

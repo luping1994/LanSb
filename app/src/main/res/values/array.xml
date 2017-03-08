@@ -25,4 +25,14 @@
         <item>其他</item>
     </string-array>
 
+    <string-array name="vtype">
+        <item>请选择</item>
+        <item>照明</item>
+        <item>插座</item>
+        <item>空调</item>
+        <item>电视机</item>
+        <item>电脑</item>
+        <item>其他</item>
+    </string-array>
+
 </resources>

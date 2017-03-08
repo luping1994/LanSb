@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.suntrans.lanzhouwh.R;
@@ -31,6 +32,7 @@ import com.suntrans.lanzhouwh.activity.base.BasedFragment;
 import com.suntrans.lanzhouwh.adapter.DividerGridItemDecoration;
 import com.suntrans.lanzhouwh.adapter.HardwareFragment_adapter;
 import com.suntrans.lanzhouwh.api.RetrofitHelper;
+import com.suntrans.lanzhouwh.bean.switchs.ModifyChannel;
 import com.suntrans.lanzhouwh.bean.userinfo.Channel;
 import com.suntrans.lanzhouwh.bean.userinfo.ChannelGroup;
 import com.suntrans.lanzhouwh.bean.userinfo.ChannelType;
@@ -40,6 +42,7 @@ import com.suntrans.lanzhouwh.service.MainService;
 import com.suntrans.lanzhouwh.utils.Converts;
 import com.suntrans.lanzhouwh.utils.LogUtil;
 import com.suntrans.lanzhouwh.utils.UiUtils;
+import com.suntrans.lanzhouwh.views.EditView;
 import com.suntrans.lanzhouwh.views.Switch;
 import com.suntrans.lanzhouwh.views.WaitDialog;
 import com.trello.rxlifecycle.android.FragmentEvent;
@@ -48,6 +51,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import butterknife.internal.Utils;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -56,6 +60,7 @@ import static android.R.attr.handle;
 import static android.R.attr.id;
 import static android.R.attr.inflatedId;
 import static android.R.attr.numbersBackgroundColor;
+import static com.tencent.bugly.crashreport.crash.c.m;
 
 /**
  * Created by Looney on 2016/11/26.
@@ -324,6 +329,11 @@ public class HardwareFragment extends BasedFragment {
                 }
 
             }
+
+            @Override
+            public void onContentClick(int position) {
+                changedChannelName(position);
+            }
         });
         recyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
@@ -333,6 +343,81 @@ public class HardwareFragment extends BasedFragment {
         });
 
         getDeviceList();
+    }
+
+    private void changedChannelName(final int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.item_changechannel, null, false);
+        final EditText name = (EditText) view.findViewById(R.id.name);
+        name.setText(datas.get(position).name);
+        final Spinner type = (Spinner) view.findViewById(R.id.type);
+//        String[] typestrings = getContext().getApplicationContext().getResources().getStringArray(R.array.vtype);
+//        type.setAdapter(new ArrayAdapter(getActivity(), R.layout.item_spinner, R.id.tv_spinner, typestrings));
+        type.setSelection(Integer.parseInt(datas.get(position).vtype));
+        final int[] type1 = {0};
+        type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                type1[0] = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        builder.setTitle("修改通道名称和类型");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String name1 = name.getText().toString();
+                postChanged(position, name1, type1[0]);
+            }
+        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        }).setView(view).create().show();
+    }
+
+    private void postChanged(int position, String name1, int vtype) {
+        if (!UiUtils.isVaild(name1)) {
+            UiUtils.showToast("名称不能为空");
+            return;
+        }
+        if (vtype == 0) {
+            UiUtils.showToast("类型不能为空");
+            return;
+        }
+        String id = datas.get(position).id;
+        RetrofitHelper.getApi().modifyChannel(id, name1, vtype + "")
+                .compose(this.<ModifyChannel>bindUntilEvent(FragmentEvent.DESTROY_VIEW))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<ModifyChannel>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(ModifyChannel modifyChannel) {
+                        if (modifyChannel == null) {
+                            UiUtils.showToast("修改失败");
+                            return;
+                        }
+                        if (modifyChannel.status_code.equals("1")) {
+                            UiUtils.showToast("修改成功");
+                            getDeviceList();
+                        }
+                    }
+                });
     }
 
 
@@ -419,9 +504,14 @@ public class HardwareFragment extends BasedFragment {
                     }
                 });
                 for (int i = 0; i < datas.size(); i++) {
-                    binder.sendOrder(datas.get(i).closeCommand);
+                    if (datas.get(i).state.equals("1")){
+                        publishProgress((i + 1) + "/" + datas.size());
+
+                        binder.sendOrder(datas.get(i).closeCommand);
+                    }else {
+                        publishProgress((i + 1) + "/" + datas.size());
+                    }
 //                    final double progress =(double) (i+1) / (double)datas.size();
-                    publishProgress((i + 1) + "/" + datas.size());
                     try {
                         Thread.sleep(500);
 
@@ -638,7 +728,7 @@ public class HardwareFragment extends BasedFragment {
 //                datas.get(i).setState(state);
 //            }
 //        }
-        handler.removeCallbacks(runnable,null);
+        handler.removeCallbacks(runnable, null);
         handler.sendEmptyMessage(DISSMISS_DIALOG);
     }
 

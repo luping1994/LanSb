@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SlidingPaneLayout;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +26,14 @@ import com.suntrans.lanzhouwh.fragment.theme.ChangeSkinFragmentTheme;
 import com.suntrans.lanzhouwh.utils.UiUtils;
 import com.suntrans.lanzhouwh.views.CircleImageView;
 import com.tencent.bugly.Bugly;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static android.R.attr.layout_height;
+import static android.R.attr.layout_width;
 
 public class MainActivity extends BasedActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     FrameLayout content;
@@ -106,7 +115,7 @@ public class MainActivity extends BasedActivity implements View.OnClickListener,
             };
             getSupportFragmentManager().beginTransaction().replace(R.id.content, main_fragment).commit();
         }
-
+//        SlidingPaneLayout
     }
 
     @Override

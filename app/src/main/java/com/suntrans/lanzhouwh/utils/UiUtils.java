@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
@@ -198,5 +199,14 @@ public class UiUtils {
 		TypedValue tv = new TypedValue();
 		context.getTheme().resolveAttribute(color, tv, true);
 		return tv.data;
+	}
+
+	public static boolean isVaild(String value){
+		if (value != null) {
+			value = value.replace(" ", "");
+			if (!TextUtils.equals("", value))
+				return true;
+		}
+		return false;
 	}
 }

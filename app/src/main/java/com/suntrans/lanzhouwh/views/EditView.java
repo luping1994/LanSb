@@ -21,7 +21,7 @@ import com.suntrans.lanzhouwh.R;
  */
 
 
-public class EditView extends EditText implements OnFocusChangeListener,TextWatcher {
+public class EditView extends android.support.v7.widget.AppCompatEditText implements OnFocusChangeListener,TextWatcher {
     /**
      * 删除按钮的引用
      */
@@ -51,7 +51,7 @@ public class EditView extends EditText implements OnFocusChangeListener,TextWatc
         mClearDrawable = getCompoundDrawables()[2];
         if (mClearDrawable == null) {
 //          throw new NullPointerException("You can add drawableRight attribute in XML");
-            mClearDrawable = getResources().getDrawable(R.drawable.ic_delete);
+            mClearDrawable = getResources().getDrawable(R.drawable.ic_delelte);
         }
 
         mClearDrawable.setBounds(0, 0, mClearDrawable.getIntrinsicWidth(), mClearDrawable.getIntrinsicHeight());

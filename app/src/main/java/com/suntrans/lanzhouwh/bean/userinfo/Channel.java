@@ -30,6 +30,7 @@ public class Channel {
     public String state;
     public String openCommand;
     public String closeCommand;
+    public String status;
 //    public Pivot pivot;
 
     public void setId(String id) {

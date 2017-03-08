@@ -15,7 +15,7 @@ import com.suntrans.lanzhouwh.R;
 
 //自定义仿IOS开关按钮控件
 //this.getWidth()==bg_on.getWidth()
-public class Switch extends ImageView {
+public class Switch extends android.support.v7.widget.AppCompatImageView {
 	// 命名空间的值
 	private final String namespace = "http://www.suntrans.net/";	
 	private boolean state=true;   //开关是打开还是关闭的状态

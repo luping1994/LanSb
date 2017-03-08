@@ -3,6 +3,9 @@ package com.suntrans.lanzhouwh.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +31,7 @@ public class HardwareFragment_adapter extends RecyclerView.Adapter {
     private CopyOnWriteArrayList<Channel> datas;
     private String[] typeName;
     private ListView listView;
+
     public HardwareFragment_adapter(Context context, CopyOnWriteArrayList<Channel> datas) {
         this.context = context;
         this.datas = datas;
@@ -38,6 +42,7 @@ public class HardwareFragment_adapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder holder;
+
         if (viewType == 0)
             holder = new ViewHolder1(LayoutInflater.from(context)
                     .inflate(R.layout.item_switchadapter, parent, false));
@@ -55,9 +60,9 @@ public class HardwareFragment_adapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position, List payloads) {
 //        super.onBindViewHolder(holder, position, payloads);
 
-        if (!payloads.isEmpty()){
+        if (!payloads.isEmpty()) {
             ((ViewHolder1) (holder)).aSwitch.setState(datas.get(position - 2).state.equals("1") ? true : false);
-        }else {
+        } else {
             if (holder instanceof ViewHolder1) {
                 ((ViewHolder1) (holder)).setData(position);
             } else if (holder instanceof ViewHolder2) {
@@ -91,6 +96,7 @@ public class HardwareFragment_adapter extends RecyclerView.Adapter {
         TextView name;
         TextView type;
         ImageView imageView;
+        RelativeLayout rl_content;
 
         public ViewHolder1(View itemView) {
             super(itemView);
@@ -98,19 +104,42 @@ public class HardwareFragment_adapter extends RecyclerView.Adapter {
             name = (TextView) itemView.findViewById(R.id.name);
             type = (TextView) itemView.findViewById(R.id.type);
             imageView = (ImageView) itemView.findViewById(R.id.iv_icon);
+            rl_content = (RelativeLayout) itemView.findViewById(R.id.rl_content);
             aSwitch.setOnChangeListener(new Switch.OnSwitchChangedListener() {
                 @Override
                 public void onSwitchChange(Switch switchView, boolean isChecked) {
                     listener.onSwitchClick(switchView, getAdapterPosition() - 2, isChecked);
                 }
             });
+            rl_content.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onContentClick(getAdapterPosition() - 2);
+                }
+            });
         }
 
         public void setData(int position) {
+            boolean isOnline = datas.get(position - 2).status.equals("1");
+            if (isOnline) {
+                aSwitch.setEnabled(true);
+            } else {
+                aSwitch.setEnabled(false);
+            }
             if (datas.get(position - 2).state != null)
                 aSwitch.setState(datas.get(position - 2).state.equals("1") ? true : false);
-            if (datas.get(position - 2).name != null)
-                name.setText(datas.get(position - 2).name);
+            if (datas.get(position - 2).name != null) {
+                if (isOnline) {
+                    String a = datas.get(position - 2).name;
+                    String c = "(" + "在线)";
+                    name.setText(a+c);
+                } else {
+                    String a = datas.get(position - 2).name;
+                    String b = "(" + "不在线)";
+                    name.setText(a+b);
+                }
+
+            }
             if (datas.get(position - 2).vtype != null) {
                 try {
                     int id = Integer.valueOf(datas.get(position - 2).vtype);
@@ -191,6 +220,8 @@ public class HardwareFragment_adapter extends RecyclerView.Adapter {
         void onShutdownClick();
 
         void onSwitchClick(Switch aswitch, int posttion, boolean state);
+
+        void onContentClick(int position);
     }
 
 }

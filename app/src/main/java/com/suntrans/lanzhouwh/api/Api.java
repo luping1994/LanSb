@@ -4,6 +4,7 @@ import com.suntrans.lanzhouwh.bean.LoginResult.LoginResult;
 import com.suntrans.lanzhouwh.bean.sixsensor.SixSensorDetailResult;
 import com.suntrans.lanzhouwh.bean.sixsensor.SixSensorconfigResult;
 import com.suntrans.lanzhouwh.bean.sixsensor.UserSixseneorList;
+import com.suntrans.lanzhouwh.bean.switchs.ModifyChannel;
 import com.suntrans.lanzhouwh.bean.userinfo.UserInfoResult;
 
 import retrofit2.http.Field;
@@ -95,4 +96,7 @@ public interface Api {
     @FormUrlEncoded
     @POST("/api/users/sensus/config")
     Observable<SixSensorconfigResult> getSixSensorConfig(@Field("id") String id);
+    @FormUrlEncoded
+    @POST("/api/users/channel/change")
+    Observable<ModifyChannel> modifyChannel(@Field("id") String id,@Field("name") String name,@Field("vtype") String vtype);
 }

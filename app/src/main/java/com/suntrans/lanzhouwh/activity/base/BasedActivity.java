@@ -43,6 +43,7 @@ public class BasedActivity extends SkinBaseActivity implements LifecycleProvider
         synchronized (mlist){
             mlist.remove(this);
         }
+        lifecycleSubject.onNext(ActivityEvent.DESTROY);
         super.onDestroy();
     }
 

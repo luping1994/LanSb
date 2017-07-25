@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="param"
+            type="com.suntrans.lanzhouwh.bean.SensusSettingResult.Param" />
+
+        <variable
+            name="command"
+            type="com.suntrans.lanzhouwh.bean.SensusSettingResult.Commmand" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:skin="http://schemas.android.com/android/skin"
+        skin:enable="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:fitsSystemWindows="false"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/Toolbar"
+            skin:enable="true">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:text="报警配置"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </android.support.v7.widget.Toolbar>
+
+        <com.suntrans.lanzhouwh.views.ScrollChildSwipeRefreshLayout
+            android:id="@+id/refreshlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_color">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="45dip"
+                            android:gravity="center|left"
+                            android:text="温度"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="15sp"
+                            skin:enable="true" />
+
+                        <LinearLayout
+                            android:id="@+id/yuzhi_wendu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+
+                                android:layout_height="45dip"
+                                android:gravity="center|left"
+                                android:text="阈值"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="15sp"
+                                skin:enable="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="fill_parent"
+                                android:layout_marginLeft="24dp"
+                                android:layout_marginRight="15dip"
+                                android:gravity="center|right"
+                                android:maxLines="1"
+                                android:text="@={param.v1}"
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <com.suntrans.lanzhouwh.views.SwitchButton
+                            android:id="@+id/switchButton_wendu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:checked='@{command.wendu}'
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
+                    </RelativeLayout>
+
+                    <ImageView
+                        style="@style/line_horizontal_middle_gray"
+                        android:layout_marginLeft="13.0dip"
+                        android:layout_marginRight="13.0dip" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="45dip"
+                            android:gravity="center|left"
+                            android:text="烟雾"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="15sp"
+                            skin:enable="true" />
+
+                        <LinearLayout
+                            android:id="@+id/yuzhi_yanwu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+
+                                android:layout_height="45dip"
+                                android:gravity="center|left"
+                                android:text="阈值"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="15sp"
+                                skin:enable="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="fill_parent"
+                                android:layout_marginLeft="24dp"
+                                android:layout_marginRight="15dip"
+                                android:gravity="center|right"
+                                android:maxLines="1"
+                                android:text="@={param.v2}"
+
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <com.suntrans.lanzhouwh.views.SwitchButton
+                            android:id="@+id/switchButton_yanwu"
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:checked='@{command.yanwu}'
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
+                    </RelativeLayout>
+
+                    <ImageView
+                        style="@style/line_horizontal_middle_gray"
+                        android:layout_marginLeft="13.0dip"
+                        android:layout_marginRight="13.0dip" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="45dip"
+                            android:gravity="center|left"
+                            android:text="甲醛"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="15sp"
+                            skin:enable="true" />
+
+                        <LinearLayout
+                            android:id="@+id/yuzhi_jiaquan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+
+                                android:layout_height="45dip"
+                                android:gravity="center|left"
+                                android:text="阈值"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="15sp"
+                                skin:enable="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="fill_parent"
+                                android:layout_marginLeft="24dp"
+                                android:layout_marginRight="15dip"
+                                android:gravity="center|right"
+                                android:maxLines="1"
+                                android:text="@={param.v3}"
+
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <com.suntrans.lanzhouwh.views.SwitchButton
+                            android:id="@+id/switchButton_jiaquan"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:checked='@{command.jiaquan}'
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
+                    </RelativeLayout>
+
+                    <ImageView
+                        style="@style/line_horizontal_middle_gray"
+                        android:layout_marginLeft="13.0dip"
+                        android:layout_marginRight="13.0dip" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="45dip"
+                            android:gravity="center|left"
+                            android:text="PM2.5"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="15sp"
+                            skin:enable="true" />
+
+                        <LinearLayout
+                            android:id="@+id/yuzhi_pm25"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+
+                                android:layout_height="45dip"
+                                android:gravity="center|left"
+                                android:text="阈值"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="15sp"
+                                skin:enable="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="fill_parent"
+                                android:layout_marginLeft="24dp"
+                                android:layout_marginRight="15dip"
+                                android:gravity="center|right"
+                                android:maxLines="1"
+                                android:text="@={param.v4}"
+
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <com.suntrans.lanzhouwh.views.SwitchButton
+                            android:id="@+id/switchButton_pm25"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:checked='@{command.pm25}'
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
+
+                    </RelativeLayout>
+
+                    <ImageView
+                        style="@style/line_horizontal_middle_gray"
+                        android:layout_marginLeft="13.0dip"
+                        android:layout_marginRight="13.0dip" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="45dip"
+                            android:gravity="center|left"
+                            android:text="振动"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="15sp"
+                            skin:enable="true" />
+
+                        <LinearLayout
+                            android:id="@+id/yuzhi_zhengdong"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:background="?attr/selectableItemBackground">
+
+                            <TextView
+                                android:id="@+id/textView"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dip"
+                                android:gravity="center|left"
+                                android:text="阈值"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="15sp"
+                                skin:enable="true" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="fill_parent"
+                                android:layout_marginLeft="24dp"
+                                android:layout_marginRight="15dip"
+                                android:gravity="center|right"
+                                android:maxLines="1"
+                                android:text="@={param.v5}"
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <com.suntrans.lanzhouwh.views.SwitchButton
+                            android:id="@+id/switchButton_zhengdong"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:checked='@{command.zhengdong}'
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="45dip"
+                            android:gravity="center|left"
+                            android:text="人员"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="15sp"
+                            skin:enable="true" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dip"
+                                android:gravity="center|left"
+                                android:text="阈值"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="fill_parent"
+                                android:layout_marginLeft="24dp"
+                                android:layout_marginRight="15dip"
+                                android:gravity="center|right"
+                                android:maxLines="1"
+                                android:text="50"
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                        <com.suntrans.lanzhouwh.views.SwitchButton
+                            android:id="@+id/switchButton_renyuan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:checked='@{command.renyuan}'
+                            app:kswBackDrawable="@drawable/switch_bottom_white"
+                            app:kswThumbDrawable="@drawable/switch_top_circle" />
+                    </RelativeLayout>
+
+                    <ImageView
+                        style="@style/line_horizontal_middle_gray"
+                        android:layout_marginLeft="13.0dip"
+                        android:layout_marginRight="13.0dip" />
+
+                    <ImageView
+                        style="@style/line_horizontal_middle_gray"
+                        android:layout_marginLeft="13.0dip"
+                        android:layout_marginRight="13.0dip" />
+
+                    <Button
+                        android:id="@+id/bt"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+        </com.suntrans.lanzhouwh.views.ScrollChildSwipeRefreshLayout>
+    </LinearLayout>
+</layout>

@@ -1,5 +1,7 @@
 package com.suntrans.lanzhouwh.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -8,32 +10,23 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.SlidingPaneLayout;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
-import com.suntrans.lanzhouwh.App;
 import com.suntrans.lanzhouwh.R;
 import com.suntrans.lanzhouwh.activity.base.BasedActivity;
+import com.suntrans.lanzhouwh.bean.userinfo.UserInfos;
 import com.suntrans.lanzhouwh.fragment.HomePage.About_Fragment;
-import com.suntrans.lanzhouwh.fragment.HomePage.Comapny_Fragment;
-import com.suntrans.lanzhouwh.fragment.HomePage.Main_fragment;
-import com.suntrans.lanzhouwh.fragment.HomePage.Main_fragment_staff;
-import com.suntrans.lanzhouwh.fragment.HomePage.Wallet_Fragment;
+import com.suntrans.lanzhouwh.fragment.HomePage.MainFragment_pre;
+import com.suntrans.lanzhouwh.fragment.HomePage.MainFragment_rent;
 import com.suntrans.lanzhouwh.fragment.theme.ChangeSkinFragmentTheme;
+import com.suntrans.lanzhouwh.utils.LogUtil;
 import com.suntrans.lanzhouwh.utils.UiUtils;
 import com.suntrans.lanzhouwh.views.CircleImageView;
-import com.tencent.bugly.Bugly;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static android.R.attr.layout_height;
-import static android.R.attr.layout_width;
 
 public class MainActivity extends BasedActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     FrameLayout content;
@@ -43,23 +36,31 @@ public class MainActivity extends BasedActivity implements View.OnClickListener,
     private static final String TAG = "MainActivity";
     private Fragment[] fragments;
     private int currentIndex = 0;
-    private static String rusergid;
+    private UserInfos infos;
+    private String rusergid;
+    private boolean isRemote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LogUtil.e("MainActivity创建了");
+
         setContentView(R.layout.activity_main);
-        Bugly.init(getApplicationContext(), "678ba11223", false);
         initView();
         setupNavagationView();
         initFragments();
+
+
     }
 
     private void initView() {
-        rusergid = getIntent().getStringExtra("rusergid");
+        infos = getIntent().getParcelableExtra("info");
+        if (infos != null)
+            rusergid = infos.getRusergid();
         content = (FrameLayout) findViewById(R.id.content);
         navView = (NavigationView) findViewById(R.id.nav_view);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
     }
 
 
@@ -69,47 +70,44 @@ public class MainActivity extends BasedActivity implements View.OnClickListener,
     }
 
     private void setupNavagationView() {
-
         View view = navView.inflateHeaderView(R.layout.nav_header_main);
-        if (rusergid.equals("1")) {
-            navView.inflateMenu(R.menu.menu_nav);
-        } else {
-            navView.inflateMenu(R.menu.menu_nav_staff);
-        }
+        navView.inflateMenu(R.menu.menu_nav);
+        TextView name = (TextView) view.findViewById(R.id.name);
+        if (infos != null)
+            name.setText(infos.getNickname());
         CircleImageView nav = (CircleImageView) view.findViewById(R.id.nav_head_avatar);
         nav.setOnClickListener(this);
         navView.setNavigationItemSelectedListener(this);
 //        dynamicAddSkinEnableView(to, "background", R.color.colorPrimary);
         dynamicAddSkinEnableView(navView.getHeaderView(0), "background", R.color.colorPrimary);
         dynamicAddSkinEnableView(navView, "navigationViewMenu", R.color.colorPrimary);
-
     }
 
     private void initFragments() {
-        if (rusergid.equals("1")) {
-            Main_fragment main_fragment = Main_fragment.newInstance();
-            Comapny_Fragment comapnyFragment = Comapny_Fragment.newInstance();
-            Wallet_Fragment wallet_fragment = Wallet_Fragment.newInstance();
+        if (infos.getRusergid().equals("1")) {
+            MainFragment_pre main_fragment = MainFragment_pre.newInstance();
+//            Comapny_Fragment comapnyFragment = Comapny_Fragment.newInstance();
+//            Wallet_Fragment wallet_fragment = Wallet_Fragment.newInstance();
             About_Fragment about_fragment = About_Fragment.newInstance();
             ChangeSkinFragmentTheme fragment = new ChangeSkinFragmentTheme();
             fragments = new Fragment[]{
                     main_fragment,
-                    comapnyFragment,
-                    wallet_fragment,
+//                    comapnyFragment,
+//                    wallet_fragment,
                     about_fragment,
                     fragment
             };
             getSupportFragmentManager().beginTransaction().replace(R.id.content, main_fragment).commit();
-        } else if (rusergid.equals("2")) {
-            Main_fragment_staff main_fragment = Main_fragment_staff.newInstance();
-            Comapny_Fragment comapnyFragment = Comapny_Fragment.newInstance();
-            Wallet_Fragment wallet_fragment = Wallet_Fragment.newInstance();
+        } else if (infos.getRusergid().equals("2")) {
+            MainFragment_rent main_fragment = MainFragment_rent.newInstance();
+//            Comapny_Fragment comapnyFragment = Comapny_Fragment.newInstance();
+//            Wallet_Fragment wallet_fragment = Wallet_Fragment.newInstance();
             About_Fragment about_fragment = About_Fragment.newInstance();
             ChangeSkinFragmentTheme fragment = new ChangeSkinFragmentTheme();
             fragments = new Fragment[]{
                     main_fragment,
-                    comapnyFragment,
-                    wallet_fragment,
+//                    comapnyFragment,
+//                    wallet_fragment,
                     about_fragment,
                     fragment
             };
@@ -139,17 +137,24 @@ public class MainActivity extends BasedActivity implements View.OnClickListener,
             case R.id.nav_home:
                 changFragment(0, R.id.nav_home);
                 break;
-            case R.id.nav_per:
-                changFragment(1, R.id.nav_per);
-                break;
-            case R.id.nav_money:
-                changFragment(2, R.id.nav_money);
-                break;
             case R.id.nav_about:
-                changFragment(3, R.id.nav_about);
+                changFragment(1, R.id.nav_about);
                 break;
             case R.id.nav_theme:
-                changFragment(4, R.id.nav_theme);
+                changFragment(2, R.id.nav_theme);
+                break;
+            case R.id.nav_env:
+                startActivity(new Intent(this, Env_activity.class));
+                overridePendingTransition(android.support.v7.appcompat.R.anim.abc_fade_in, android.support.v7.appcompat.R.anim.abc_fade_out);
+
+                break;
+            case R.id.nav_ele:
+                startActivity(new Intent(this, EleInfo_Activity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+//                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+
+
                 break;
         }
         drawerLayout.closeDrawers();
@@ -157,7 +162,7 @@ public class MainActivity extends BasedActivity implements View.OnClickListener,
     }
 
     private void changFragment(int index, int menuId) {
-        navView.setCheckedItem(menuId);
+//        navView.setCheckedItem(menuId);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.hide(fragments[currentIndex]);
         if (!fragments[index].isAdded()) {
@@ -167,23 +172,6 @@ public class MainActivity extends BasedActivity implements View.OnClickListener,
         currentIndex = index;
     }
 
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        System.out.println("onresume");
-    }
 
     private long[] mHits = new long[2];
 
@@ -201,17 +189,12 @@ public class MainActivity extends BasedActivity implements View.OnClickListener,
             System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
             mHits[mHits.length - 1] = SystemClock.uptimeMillis();
             if (mHits[0] >= (SystemClock.uptimeMillis() - 2000)) {
-//                finish();
-                android.os.Process.killProcess(android.os.Process.myPid());
+                finish();
+//                android.os.Process.killProcess(android.os.Process.myPid());
             } else {
                 UiUtils.showToast("再按一次退出");
             }
             return true;
-//            Intent intent = new Intent(Intent.ACTION_MAIN);
-//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            intent.addCategory(Intent.CATEGORY_HOME);
-//            startActivity(intent);
-//            return true;
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -222,4 +205,42 @@ public class MainActivity extends BasedActivity implements View.OnClickListener,
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
+    @Override
+    protected boolean isSupportSwipeBack() {
+        return false;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LogUtil.e("MainActivity销毁了");
+    }
+
+    @Override
+    public boolean isApplyStatusBarColor() {
+        return true;
+    }
+
+
+    private BroadcastReceiver mHomeKeyEventReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action.equals(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)) {
+                String reason = intent.getStringExtra(SYSTEM_REASON);
+                if (TextUtils.equals(reason, SYSTEM_HOME_KEY)) {
+                    //表示按了home键,程序到了后台
+                    finish();
+                } else if (TextUtils.equals(reason, SYSTEM_HOME_KEY_LONG)) {
+                    //表示长按home键,显示最近使用的程序列表
+                }
+            }
+        }
+
+        String SYSTEM_REASON = "reason";
+        String SYSTEM_HOME_KEY = "homekey";
+        String SYSTEM_HOME_KEY_LONG = "recentapps";
+
+
+    };
 }

@@ -194,7 +194,7 @@ public class EnvFragment extends BasedFragment {
                 layout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        System.out.println("条目被点击了"+getAdapterPosition());
+//                        System.out.println("条目被点击了"+getAdapterPosition());
                     }
                 });
             }

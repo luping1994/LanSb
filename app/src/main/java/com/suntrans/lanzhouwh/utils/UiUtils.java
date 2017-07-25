@@ -2,15 +2,19 @@ package com.suntrans.lanzhouwh.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.androidadvance.topsnackbar.TSnackbar;
 import com.suntrans.lanzhouwh.App;
 import com.suntrans.lanzhouwh.R;
 
@@ -168,32 +172,9 @@ public class UiUtils {
 	}
 
 
-	public static int getAppTheme(Context context){
-		String value = SharedPreferrenceHelper.gettheme(context);
-		switch (Integer.valueOf(value)){
-			case 1:
-				return R.style.AppTheme_NoActionBar;
-			case 2:
-				return R.style.AppTheme_NoActionBar_green;
-			default:
-				return R.style.AppTheme_NoActionBar;
-		}
-	}
 
-	public static void switchAppTheme(Context context){
-		String value = SharedPreferrenceHelper.gettheme(context);
-		switch (Integer.valueOf(value)){
-			case 1:
-				SharedPreferrenceHelper.settheme(context,"2");
-				break;
-			case 2:
-				SharedPreferrenceHelper.settheme(context,"1");
-				break;
-			default:
-				SharedPreferrenceHelper.settheme(context,"1");
-				break;
-		}
-	}
+
+
 
 	public static int getColor(Context context, int color) {
 		TypedValue tv = new TypedValue();
@@ -208,5 +189,34 @@ public class UiUtils {
 				return true;
 		}
 		return false;
+	}
+	public static   void showMessage(View view,String msg) {
+		TSnackbar snackbar = TSnackbar.make(view, msg, TSnackbar.LENGTH_LONG);
+		snackbar.setActionTextColor(Color.WHITE);
+		snackbar.setIconLeft(R.drawable.ic_info,24);
+		View snackbarView = snackbar.getView();
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+			snackbarView.setPadding(0,StatusBarCompat.getStatusBarHeight(view.getContext()),0,0);
+		}
+		snackbarView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+		TextView textView = (TextView) snackbarView.findViewById(com.androidadvance.topsnackbar.R.id.snackbar_text);
+		textView.setTextColor(Color.BLACK);
+		textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+		snackbar.show();
+	}
+
+	public static void showMessageWarning(View view, String msg) {
+		TSnackbar snackbar = TSnackbar.make(view, msg, TSnackbar.LENGTH_LONG);
+		snackbar.setActionTextColor(Color.WHITE);
+		snackbar.setIconLeft(R.drawable.ic_info_read, 24);
+		View snackbarView = snackbar.getView();
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			snackbarView.setPadding(0, StatusBarCompat.getStatusBarHeight(view.getContext()), 0, 0);
+		}
+		snackbarView.setBackgroundColor(Color.parseColor("#FFDADA"));
+		TextView textView = (TextView) snackbarView.findViewById(com.androidadvance.topsnackbar.R.id.snackbar_text);
+		textView.setTextColor(Color.BLACK);
+		textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+		snackbar.show();
 	}
 }

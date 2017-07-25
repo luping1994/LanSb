@@ -1,38 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="#55aaaaaa"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/login_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:id="@+id/logo_ll"
-        android:layout_marginTop="100dp"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:src="@drawable/ic_logo"
-            android:layout_width="75dp"
-            android:layout_height="75dp" />
-    </LinearLayout>
-
-   <TextView
-       android:layout_below="@+id/logo_ll"
-       android:layout_marginTop="20dp"
-       android:gravity="center"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:textColor="#b85c38"
-       android:text="万华互联大厦"
-       android:textSize="30sp"/>
+    <!--<LinearLayout-->
+        <!--android:id="@+id/logo_ll"-->
+        <!--android:layout_marginTop="100dp"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<ImageView-->
+            <!--android:src="@drawable/ic_whlogo"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+    <!--</LinearLayout>-->
 
     <TextView
-        android:id="@+id/tv_bottom"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_marginBottom="4dp"
+        android:layout_above="@+id/name1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#b85c38"
+        android:gravity="center"
+        android:text="广州三川控制系统工程设备有限公司"
+        android:textSize="12sp" />
+    <TextView
+        android:textColor="@color/white"
+        android:maxLines="1"
+        android:id="@+id/name1"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:gravity="center"
         android:text="@string/company_name"
-        android:textSize="15sp"/>
+        android:textSize="14sp" />
 </RelativeLayout>

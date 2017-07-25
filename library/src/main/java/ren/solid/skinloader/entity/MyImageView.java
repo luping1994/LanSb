@@ -13,7 +13,7 @@ import ren.solid.library.R;
  * Created by Looney on 2017/1/3.
  */
 
-public class MyImageView extends ImageView {
+public class MyImageView extends android.support.v7.widget.AppCompatImageView {
 
 
     private int filterColor;

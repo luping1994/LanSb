@@ -1,10 +1,6 @@
 package ren.solid.skinloader.attr;
 
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-
-import com.roughike.bottombar.BottomBar;
 
 import ren.solid.skinloader.entity.MyImageView;
 import ren.solid.skinloader.load.SkinManager;

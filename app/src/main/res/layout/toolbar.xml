@@ -19,6 +19,7 @@
         android:layout_marginLeft="@dimen/activity_horizontal_margin">
 
         <ImageView
+            android:background="?attr/selectableItemBackground"
             android:id="@+id/left_image"
             android:layout_width="30dp"
             android:layout_height="30dp"

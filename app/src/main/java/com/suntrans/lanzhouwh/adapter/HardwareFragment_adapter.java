@@ -1,26 +1,23 @@
 package com.suntrans.lanzhouwh.adapter;
-
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.suntrans.lanzhouwh.R;
-import com.suntrans.lanzhouwh.bean.userinfo.Channel;
-import com.suntrans.lanzhouwh.utils.LogUtil;
+import com.suntrans.lanzhouwh.bean.genitem.FloorDetailItem;
 import com.suntrans.lanzhouwh.views.Switch;
-
+import com.suntrans.lanzhouwh.views.SwitchButton;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import retrofit2.http.Headers;
 
 /**
  * Created by Looney on 2017/1/11.
@@ -28,15 +25,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class HardwareFragment_adapter extends RecyclerView.Adapter {
     private Context context;
-    private CopyOnWriteArrayList<Channel> datas;
-    private String[] typeName;
-    private ListView listView;
+    private CopyOnWriteArrayList<FloorDetailItem.Channel> datas;
 
-    public HardwareFragment_adapter(Context context, CopyOnWriteArrayList<Channel> datas) {
+    public HardwareFragment_adapter(Context context, CopyOnWriteArrayList<FloorDetailItem.Channel> datas) {
         this.context = context;
         this.datas = datas;
-        typeName = context.getApplicationContext().getResources().getStringArray(R.array.type);
-
     }
 
     @Override
@@ -67,6 +60,9 @@ public class HardwareFragment_adapter extends RecyclerView.Adapter {
                 ((ViewHolder1) (holder)).setData(position);
             } else if (holder instanceof ViewHolder2) {
                 ((ViewHolder2) (holder)).setData(position);
+            }else if (holder instanceof  ViewHolder3){
+                ((ViewHolder3) (holder)).setData(position);
+
             }
         }
     }
@@ -97,20 +93,39 @@ public class HardwareFragment_adapter extends RecyclerView.Adapter {
         TextView type;
         ImageView imageView;
         RelativeLayout rl_content;
+        RelativeLayout rlControl;
+        SwitchButton switchButton ;
 
         public ViewHolder1(View itemView) {
             super(itemView);
-            aSwitch = (Switch) itemView.findViewById(R.id._switch);
+//            aSwitch = (Switch) itemView.findViewById(R.id._switch);
             name = (TextView) itemView.findViewById(R.id.name);
             type = (TextView) itemView.findViewById(R.id.type);
             imageView = (ImageView) itemView.findViewById(R.id.iv_icon);
             rl_content = (RelativeLayout) itemView.findViewById(R.id.rl_content);
-            aSwitch.setOnChangeListener(new Switch.OnSwitchChangedListener() {
+            rlControl = (RelativeLayout) itemView.findViewById(R.id.rlControl);
+            switchButton = (SwitchButton) itemView.findViewById(R.id.switchButton);
+            switchButton.setOnCheckedChangeListener(null);
+            rlControl.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onSwitchChange(Switch switchView, boolean isChecked) {
-                    listener.onSwitchClick(switchView, getAdapterPosition() - 2, isChecked);
+                public void onClick(View v) {
+                    listener.onSwitchRootClick(getAdapterPosition()-2);
+//                    listener.onSwitchClick((SwitchButton) v.findViewById(R.id.switchButton), getAdapterPosition() - 2, ((SwitchButton) v.findViewById(R.id.switchButton)).isChecked());
+
                 }
             });
+//            switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//                @Override
+//                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                    listener.onSwitchClick((SwitchButton) buttonView, getAdapterPosition() - 2, isChecked);
+//
+//                }
+//            });
+//            aSwitch.setOnChangeListener(new Switch.OnSwitchChangedListener() {
+//                @Override
+//                public void onSwitchChange(Switch switchView, boolean isChecked) {
+//                }
+//            });
             rl_content.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -120,46 +135,21 @@ public class HardwareFragment_adapter extends RecyclerView.Adapter {
         }
 
         public void setData(int position) {
-            boolean isOnline = datas.get(position - 2).status.equals("1");
-            if (isOnline) {
-                aSwitch.setEnabled(true);
-            } else {
-                aSwitch.setEnabled(false);
-            }
+
             if (datas.get(position - 2).state != null)
-                aSwitch.setState(datas.get(position - 2).state.equals("1") ? true : false);
-            if (datas.get(position - 2).name != null) {
-                if (isOnline) {
-                    String a = datas.get(position - 2).name;
-                    String c = "(" + "在线)";
-                    name.setText(a+c);
-                } else {
-                    String a = datas.get(position - 2).name;
-                    String b = "(" + "不在线)";
-                    name.setText(a+b);
-                }
+                switchButton.setCheckedImmediately(datas.get(position - 2).state.equals("1") ? true : false);
+            String a = datas.get(position - 2).devname;
+            String types = datas.get(position - 2).idusetype;
+            name.setText(a == null ? "未定义名称" : a);
+            type.setText(types == null ? "未定义类型" : types);
+            Glide.with(context)
+                    .load(datas.get(position-2).img)
+                    .centerCrop()
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.ic_bulb_off)
+                    .into(imageView);
 
-            }
-            if (datas.get(position - 2).vtype != null) {
-                try {
-                    int id = Integer.valueOf(datas.get(position - 2).vtype);
-                    type.setText(typeName[id]);
-                    if (id == 1) {
-                        imageView.setImageResource(R.drawable.ic_light);
-                    } else if (id == 2) {
-                        imageView.setImageResource(R.drawable.ic_chazuo);
-
-                    } else if (id == 3) {
-                        imageView.setImageResource(R.drawable.ic_kongtiao);
-
-                    } else {
-                        imageView.setImageResource(R.drawable.ic_light);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
         }
 
 
@@ -169,11 +159,11 @@ public class HardwareFragment_adapter extends RecyclerView.Adapter {
         RelativeLayout shutdown;
         TextView num;
         ImageView imageView;
-
         public ViewHolder2(View itemView) {
             super(itemView);
             shutdown = (RelativeLayout) itemView.findViewById(R.id.shutdown);
             num = (TextView) itemView.findViewById(R.id.tx_devicenum);
+//            header = (TextView) itemView.findViewById(R.id.header);
             imageView = (ImageView) itemView.findViewById(R.id.iv_shutdown);
             shutdown.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -186,6 +176,7 @@ public class HardwareFragment_adapter extends RecyclerView.Adapter {
 
         public void setData(int position) {
             num.setText(datas.size() + "台设备使用中");
+
         }
 
         public void setListener(final int position) {
@@ -194,13 +185,21 @@ public class HardwareFragment_adapter extends RecyclerView.Adapter {
     }
 
     class ViewHolder3 extends RecyclerView.ViewHolder {
+        TextView header;
 
         public ViewHolder3(View itemView) {
             super(itemView);
-
+            header = (TextView) itemView.findViewById(R.id.header);
         }
 
         public void setData(int position) {
+            int open = 0;
+            for (int i=0;i<datas.size();i++){
+                if (datas.get(i).state.equals("1")){
+                    open++;
+                }
+            }
+            header.setText("全部设备共"+datas.size()+"个,"+open+"个开启");
 
         }
 
@@ -219,7 +218,8 @@ public class HardwareFragment_adapter extends RecyclerView.Adapter {
     public interface onItemClickListener {
         void onShutdownClick();
 
-        void onSwitchClick(Switch aswitch, int posttion, boolean state);
+        void onSwitchClick(SwitchButton aswitch, int posttion, boolean state);
+        void onSwitchRootClick(int posttion);
 
         void onContentClick(int position);
     }

@@ -4,8 +4,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.util.Base64;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,6 +15,8 @@ import android.widget.TextView;
 import com.suntrans.lanzhouwh.App;
 import com.suntrans.lanzhouwh.R;
 import com.suntrans.lanzhouwh.activity.base.BasedActivity;
+import com.suntrans.lanzhouwh.bean.userinfo.UserInfos;
+import com.suntrans.lanzhouwh.utils.ParcelableUtil;
 
 /**
  * Created by Looney on 2016/12/7.
@@ -23,14 +27,24 @@ public class PersonalActivity extends BasedActivity {
     TextView titleName;
     private int theme = 0;
     LinearLayout leftIcon;
+    private UserInfos info;
+    private TextView nickname;
+    private TextView name;
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState){
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal);
         tvRight = (TextView) findViewById(R.id.tv_right);
         titleName = (TextView) findViewById(R.id.title_name);
         titleName.setText("个人中心");
+        String userinfo = App.getSharedPreferences().getString("userinfo", "-1");
+        if (!userinfo.equals("-1")) {
+            byte[] s = Base64.decode(userinfo, Base64.DEFAULT);
+            Parcel parcel = ParcelableUtil.unmarshall(s);
+            info = UserInfos.CREATOR.createFromParcel(parcel);
+        }
         leftIcon = (LinearLayout) findViewById(R.id.left_icon);
         leftIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,9 +52,15 @@ public class PersonalActivity extends BasedActivity {
                 finish();
             }
         });
+
+        name = (TextView) findViewById(R.id.name);
+        nickname = (TextView) findViewById(R.id.nickname);
+
+        nickname.setText("昵称：" + info.getNickname());
+        name.setText(info.getRusername());
     }
 
-    public void signOut(View view){
+    public void signOut(View view) {
         new AlertDialog.Builder(this)
                 .setMessage("是否要退出登录?")
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -48,11 +68,9 @@ public class PersonalActivity extends BasedActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         killAll();
                         SharedPreferences.Editor editor = App.getSharedPreferences().edit();
-                        editor.putString("access_token","-1");
-                        editor.putString("expires_in","-1");
-                        editor.putLong("firsttime",-1l);
+                        editor.clear();
                         editor.commit();
-                        Intent intent = new Intent(PersonalActivity.this,LoginActivity.class);
+                        Intent intent = new Intent(PersonalActivity.this, LoginActivity.class);
                         startActivity(intent);
                         overridePendingTransition(android.support.v7.appcompat.R.anim.abc_slide_in_bottom, android.support.v7.appcompat.R.anim.abc_slide_out_bottom);
                     }

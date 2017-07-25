@@ -30,6 +30,7 @@
                 android:layout_height="75dp"
                 android:src="@drawable/touxiang"/>
             <TextView
+                android:id="@+id/name"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_toRightOf="@id/iv_touxiang"
@@ -40,6 +41,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:visibility="gone"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
@@ -52,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:text="上传头像"
                 android:textColor="@color/white"
-                android:layout_height="20dp" />
+                android:layout_height="35dp" />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -66,12 +68,14 @@
         android:layout_width="match_parent"
         android:layout_height="40dp">
         <TextView
+            android:id="@+id/nickname"
             android:textColor="@color/black"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="昵称"/>
         <TextView
+            android:visibility="gone"
             android:layout_alignParentRight="true"
             android:textColor="@color/blue"
             android:gravity="center"
@@ -84,6 +88,7 @@
         android:layout_width="match_parent"
         android:layout_height="1px" />
     <RelativeLayout
+        android:visibility="gone"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:layout_width="match_parent"
@@ -120,7 +125,7 @@
             android:layout_width="wrap_content"
             android:text="退出登录"
             android:textColor="@color/white"
-            android:layout_height="20dp" />
+            android:layout_height="35dp" />
     </RelativeLayout>
     </LinearLayout>
 

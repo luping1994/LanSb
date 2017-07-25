@@ -1,30 +1,46 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-
-    </style>
-
-    <style name="AppTheme.NoActionBar" parent="AppTheme">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowIsTranslucent">true</item>
     </style>
 
-    <style name="AppTheme.NoActionBar.green" parent="AppTheme">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary_green</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark_green</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="MyAppTheme" parent="@style/AppTheme">
+    </style>
+    <style name="MainAppTheme" parent="@style/AppTheme">
 
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowIsTranslucent">true</item>
+    </style>
+    <style name="line_below_navigation_bar">
+        <item name="android:background">#ff000000</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">2.0dip</item>
+        <item name="android:alpha">0.1</item>
     </style>
 
+    <style name="loading_dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textSize">16sp</item> <!--  搞掂字体大小-->
+    </style>
+
+    <style name="line_horizontal_middle_gray">
+        <item name="android:background">#ffcccccc</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1.0px</item>
+        <item name="android:layout_marginLeft">13.0dip</item>
+        <item name="android:layout_marginRight">13.0dip</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
+
+    <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <!--<item name="android:textColor">@android:color/white</item>-->
+    </style>
 </resources>

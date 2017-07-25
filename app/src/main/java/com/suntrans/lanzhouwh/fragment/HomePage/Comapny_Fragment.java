@@ -15,7 +15,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.suntrans.lanzhouwh.R;
-import com.suntrans.lanzhouwh.activity.AddStaffActivity;
 import com.suntrans.lanzhouwh.activity.MainActivity;
 import com.suntrans.lanzhouwh.activity.base.BasedFragment;
 import com.suntrans.lanzhouwh.adapter.DividerGridItemDecoration;
@@ -78,8 +77,8 @@ public class Comapny_Fragment extends BasedFragment implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.layout_right:
-                startActivity(new Intent(getActivity(), AddStaffActivity.class));
-                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+//                startActivity(new Intent(getActivity(), AddStaffActivity.class));
+//                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.left_icon:
                 ((MainActivity)getActivity()).drawerLayout.openDrawer(GravityCompat.START);

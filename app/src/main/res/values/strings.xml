@@ -9,5 +9,17 @@
     <string name="back">返回</string>
     <string name="query">查询</string>
     <string name="activate">激活</string>
-    <string name="company_name">Copyright © suntrans. All rights reserved</string>
+    <string name="company_name">Copyright © 1993-2017 Suntrans. All rights reserved.</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <string name="forgot_password">忘记密码</string>
+    <string name="account">账号</string>
+    <string name="password">密码</string>
+    <string name="search">搜索</string>
+    <string name="main_devices_">配置</string>
+    <string name="sockets">插座</string>
+    <string name="zhaoming">照明</string>
 </resources>

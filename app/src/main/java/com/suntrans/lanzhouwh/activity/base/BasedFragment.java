@@ -20,7 +20,7 @@ import rx.subjects.BehaviorSubject;
  * Created by Looney on 2017/1/11.
  */
 
-public class BasedFragment extends SkinBaseFragment implements LifecycleProvider<FragmentEvent> {
+public  class BasedFragment extends SkinBaseFragment implements LifecycleProvider<FragmentEvent> {
     private final BehaviorSubject<FragmentEvent> lifecycleSubject = BehaviorSubject.create();
 
     @Override

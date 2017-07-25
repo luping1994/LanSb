@@ -5,7 +5,7 @@
     <dimen name="nav_header_width">300dp</dimen>
     <dimen name="nav_header_height">206dp</dimen>
     <dimen name="title_size">16sp</dimen>
-    <dimen name="subtitle_size">14sp</dimen>
+    <dimen name="subtitle_size">12sp</dimen>
     <dimen name="margin_left">16dp</dimen>
     <dimen name="margin_right">16dp</dimen>
     <dimen name="loginmargin">50dip</dimen>
@@ -13,4 +13,9 @@
     <dimen name="min_text_size">12sp</dimen>
     <dimen name="nav_size">18sp</dimen>
     <dimen name="button_size">30dp</dimen>
+    <dimen name="env_text_size">12sp</dimen>
+    <dimen name="dimens_8dp">8dp</dimen>
+    <dimen name="eleitem_textmargin">40dp</dimen>
+    <dimen name="key_line_tab">60dp</dimen>
+    <dimen name="env_iten_margin">16dp</dimen>
 </resources>

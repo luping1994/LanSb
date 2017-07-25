@@ -23,4 +23,12 @@
         <attr name="tr_headerView" format="dimension"/>
         <attr name="tr_bottomView" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="CircleTextProgressbar">
+        <attr name="in_circle_color" format="color" />
+        <attr name="maxValue" format="integer"/>
+        <attr name="outLineColor" format="color"/>
+    </declare-styleable>
+
+
 </resources>

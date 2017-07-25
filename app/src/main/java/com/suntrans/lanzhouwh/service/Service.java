@@ -33,7 +33,7 @@ public class Service extends android.app.Service {
     //  private String serverip="192.168.1.235";
     // public CalendarContract.Instances instances;
 //    public String serverip="61.235.65.160";     //服务器IP
-    public String serverip = "wanhua.suntrans.net";     //服务器IP
+    public String serverip = "wanhua.suntrans-cloud.com";     //服务器IP
     // public String serverip="192.168.0.55";
     public int port = 8767;    //服务器端口
     //    public int port=2000;  //服务器端口

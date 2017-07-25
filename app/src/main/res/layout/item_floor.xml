@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#eeeeee"
+        android:gravity="center|left"
+        android:paddingBottom="8dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="8dp"
+        android:text="1层"
+        android:textColor="#808080"
+        android:textSize="20sp" />
+
+    <!--<View-->
+    <!--android:background="@color/grey"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1px"-->
+    <!--android:id="@+id/devision"-->
+    <!--android:layout_below="@+id/name" />-->
+
+    <LinearLayout
+        android:id="@+id/item_content"
+        android:background="@drawable/item_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:gravity="center|left"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="#f88e5b"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_bubb" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_toRightOf="@+id/image"
+                android:gravity="center_vertical"
+                android:text="照明"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:gravity="center"
+                android:id="@+id/zhaoming"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:text=""
+                android:textColor="@color/grey"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+            <ImageView
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_scket"
+                android:background="#93c8d6"
+                android:id="@+id/image_socket"
+                android:layout_width="36dp"
+                android:layout_height="36dp" />
+            <TextView
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:gravity="center"
+                android:layout_toRightOf="@id/image_socket"
+                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:layout_height="match_parent"
+                android:text="插座"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:gravity="center"
+                android:id="@+id/cazuo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:text=""
+                android:textColor="@color/grey"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:paddingBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+            <ImageView
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_all"
+                android:background="#38ac69"
+                android:id="@+id/image_all"
+                android:layout_width="36dp"
+                android:layout_height="36dp" />
+            <TextView
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:gravity="center_vertical"
+                android:layout_toRightOf="@id/image_all"
+                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:layout_height="match_parent"
+                android:text="在线"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:gravity="center"
+                android:textSize="16sp"
+                android:id="@+id/online"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=""
+                android:textColor="@color/grey"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <!--<ImageView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />-->
+</RelativeLayout>

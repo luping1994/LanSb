@@ -2,12 +2,14 @@ package com.suntrans.lanzhouwh.utils;
 
 import android.util.Log;
 
+import static com.suntrans.lanzhouwh.BuildConfig.ENABLE_DEBUG;
+
 public class LogUtil
 {
 
     private static final String TAG = "LogUtil";
     // 是否显示Log消息
-    private static boolean isShow = true;
+    private static boolean isShow = ENABLE_DEBUG;
 
     public static boolean isShow()
     {

@@ -20,27 +20,61 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitHelper {
 
-//    public static final String BASE_URL = "http://www.suntrans.net:8956";
+
     public static final String BASE_URL = "http://yunapp.egird.com";
+//    public static final String BASE_URL2 = "http://27.17.32.182:8002";
+    public static final String BASE_URL2 = "http://wanhua.suntrans.net:8762";
+    public static final String BASE_URL3 = "http://wanhua.suntrans-cloud.com";
 
     private static OkHttpClient mOkHttpClient;
 
     static {
         initOkHttpClient();
     }
-    public static Api getLoginApi() {
+
+//    public static Api getLoginApi() {
+//
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(BASE_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+//                .build();
+//        return retrofit.create(Api.class);
+//    }
+
+    public static Api getLoginApi2() {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(BASE_URL2)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         return retrofit.create(Api.class);
     }
 
-    public static Api getApi(){
+    public static Api getApi() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
+                .client(mOkHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+        return retrofit.create(Api.class);
+    }
+
+    public static Api getApi2() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL2)
+                .client(mOkHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+        return retrofit.create(Api.class);
+    }
+
+    public static Api getApi3() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL3)
                 .client(mOkHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -53,11 +87,11 @@ public class RetrofitHelper {
         Interceptor netInterceptor = new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
-                String header = App.getSharedPreferences().getString("access_token","-1");
-                header = "Bearer "+header;
+                String header = App.getSharedPreferences().getString("access_token1", "-1");
+                header = "Bearer " + header;
                 LogUtil.i(header);
                 Request original = chain.request();
-                Request request= original.newBuilder()
+                Request request = original.newBuilder()
                         .header("Authorization", header)
                         .method(original.method(), original.body())
                         .build();
@@ -75,10 +109,9 @@ public class RetrofitHelper {
         };
 
 
-
         if (mOkHttpClient == null) {
             synchronized (RetrofitHelper.class) {
-                if (mOkHttpClient==null){
+                if (mOkHttpClient == null) {
                     mOkHttpClient = new OkHttpClient.Builder()
                             .addInterceptor(netInterceptor)
                             .connectTimeout(10, TimeUnit.SECONDS)
@@ -169,7 +202,6 @@ public class RetrofitHelper {
 //            }
 //        }
 //    }
-
 
 
 }

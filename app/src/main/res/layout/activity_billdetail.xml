@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    skin:enable="true">
+
+    <include layout="@layout/toolbar2" />
+
+    <com.suntrans.lanzhouwh.views.ScrollChildSwipeRefreshLayout
+        android:id="@+id/refreshlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.NestedScrollView
+            android:background="@color/bg_color"
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/activity_horizontal_margin">
+
+                <LinearLayout
+                    android:id="@+id/ll_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:background="@color/cardview"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:id="@+id/elec"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="总用电量:200 kw·h" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:background="@color/cardview"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:id="@+id/charge"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="总电费：" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:background="@color/cardview"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:gravity="center_vertical"
+                        android:text="本年度用电纪录" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="月份" />
+
+                        <View
+                            android:layout_width="1px"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@color/grey" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="用电量" />
+
+                        <View
+                            android:layout_width="1px"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@color/grey" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="电费" />
+
+                        <View
+                            android:layout_width="1px"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@color/grey" />
+
+                        <TextView
+
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="充值金额" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/grey" />
+
+                    <android.support.v7.widget.RecyclerView
+
+                        android:id="@+id/recyclerview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </android.support.v7.widget.RecyclerView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:background="@color/cardview"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:gravity="center_vertical"
+                        android:text="历史年份用电纪录" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="年份" />
+
+                        <View
+                            android:layout_width="1px"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@color/grey" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="用电量(kwh)" />
+
+                        <View
+                            android:layout_width="1px"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@color/grey" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="电费(元)" />
+
+                        <View
+                            android:layout_width="1px"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@color/grey" />
+
+                        <TextView
+
+                            android:layout_width="0dp"
+                            android:layout_height="45dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="充值金额(元)" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/grey" />
+
+                    <android.support.v7.widget.RecyclerView
+
+                        android:id="@+id/recyclerview2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </android.support.v7.widget.RecyclerView>
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </com.suntrans.lanzhouwh.views.ScrollChildSwipeRefreshLayout>
+</LinearLayout>

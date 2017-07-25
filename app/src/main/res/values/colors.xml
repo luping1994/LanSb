@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#b85c38</color>
-    <color name="colorPrimaryDark">#b85c38</color>
-    <color name="colorAccent">#b85c38</color>
+    <!--<color name="colorPrimary">#1f4483</color>-->
+    <!--<color name="colorPrimaryDark">#1f4483</color>-->
+    <!--<color name="colorAccent">#FF4081</color>-->
+
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#CDDC39</color>
+
     <color name="white">#ffffff</color>
-    <color name="secondcolor">#bdbdbd</color>
+    <color name="secondcolor">#ffffff</color>
     <!-- 通用页面默认背景颜色 -->
-    <color name="bg_color">#efeef4</color>
+
+    <color name="bg_color">#eeeeee</color>
+    <color name="cardview">#fafafa</color>
+
+
     <color name="colorPrimaryDark_green">#00ff00</color>
     <color name="colorPrimary_green">#00ff00</color>
     <color name="grey">#808080</color>
@@ -20,4 +30,8 @@
     <color name="yellow">#ffd700</color>
     <color name="yellow3">#1cb6ee</color>
     <color name="royalblue">#4169E1</color>
+    <color name="transparent">#00000000</color>
+    <color name="recharge_bt">#16bb12</color>
+    <color name="secondtextcolor">#c3c3c3</color>
+    <color name="bg_welcome">#fbfbfb</color>
 </resources>

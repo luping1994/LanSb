@@ -1,66 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
-        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="70dip"
+        android:layout_height="64dp"
+        android:background="@color/white"
         android:orientation="horizontal">
 
-        <com.suntrans.lanzhouwh.views.CircleImageView
+        <ImageView
             android:id="@+id/iv_icon"
-            android:layout_width="50dip"
-            android:layout_height="50dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/margin_left"
-            android:src="@mipmap/ic_bulb_off" />
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_bulb_off" />
 
         <RelativeLayout
-            android:background="?attr/selectableItemBackground"
             android:id="@+id/rl_content"
-            android:layout_marginLeft="20dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
             android:layout_weight="1"
-            >
+            android:background="?attr/selectableItemBackground">
+
             <LinearLayout
-                android:gravity="center"
-                android:layout_centerVertical="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_centerVertical="true"
                 android:layout_marginTop="15dp"
+                android:gravity="center"
                 android:orientation="vertical">
+
                 <TextView
-                    android:textColor="@color/black"
                     android:id="@+id/name"
-                    android:textSize="@dimen/subtitle_size"
-                    android:gravity="center|left"
-                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    android:text="名称:"/>
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="名称:"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
                 <TextView
                     android:id="@+id/type"
-                    android:textSize="@dimen/subtitle_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:gravity="center|left"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:text="类型:"/>
+                    android:text="类型:"
+                    android:textSize="@dimen/subtitle_size" />
 
             </LinearLayout>
         </RelativeLayout>
 
-        <com.suntrans.lanzhouwh.views.Switch
-            android:id="@+id/_switch"
-            android:layout_width="50dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:scaleType="fitXY"
-            android:layout_marginRight="@dimen/margin_right" />
+     <RelativeLayout
+         android:background="?attr/selectableItemBackground"
+         android:id="@+id/rlControl"
+         android:layout_width="wrap_content"
+         android:layout_height="match_parent">
+         <com.suntrans.lanzhouwh.views.SwitchButton
+             android:clickable="false"
+             android:id="@+id/switchButton"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerInParent="true"
+             android:layout_marginRight="@dimen/activity_horizontal_margin"
+             app:kswBackDrawable="@drawable/switch_bottom_white"
+             app:kswThumbDrawable="@drawable/switch_top_circle" />
+
+     </RelativeLayout>
+        <!--<com.suntrans.lanzhouwh.views.Switch-->
+        <!--android:id="@+id/_switch"-->
+        <!--android:layout_width="50dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:scaleType="fitXY"-->
+        <!--android:layout_marginRight="@dimen/margin_right" />-->
     </LinearLayout>
 
 </LinearLayout>

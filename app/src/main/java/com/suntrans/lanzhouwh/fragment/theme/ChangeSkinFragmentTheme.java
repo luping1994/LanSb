@@ -9,12 +9,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.suntrans.lanzhouwh.App;
 import com.suntrans.lanzhouwh.R;
-import com.suntrans.lanzhouwh.activity.AddStaffActivity;
 import com.suntrans.lanzhouwh.activity.MainActivity;
+import com.suntrans.lanzhouwh.utils.UiUtils;
 
 import java.io.File;
 
@@ -81,12 +80,15 @@ public class ChangeSkinFragmentTheme extends ThemeBaseFragment implements View.O
             public void onClick(View v) {
                 File skin = new File("data/data/" + App.getApplication().getPackageName() + "/skin" + "/skin_brown.skin");
                 if (!skin.exists()) {
-                    Toast.makeText(getMContext(), "皮肤包不存在", Toast.LENGTH_SHORT).show();
+                  UiUtils.showToast("皮肤包不存在");
                     return;
                 }
 
                 if (SkinConfig.getCustomSkinPath(getActivity()).equals("/data/data/" + App.getApplication().getPackageName() + "/skin" + "/skin_brown.skin"))
+                {
+                    UiUtils.showToast("已经是当前皮肤了");
                     return;
+                }
                 SkinManager.getInstance().load(skin.getAbsolutePath(),
                         new ILoaderListener() {
                             @Override
@@ -97,6 +99,8 @@ public class ChangeSkinFragmentTheme extends ThemeBaseFragment implements View.O
                             @Override
                             public void onSuccess() {
                                 Log.i(TAG, "loadSkinSuccess");
+                                UiUtils.showToast("切换成功");
+
 //                                Toast.makeText(getMContext(), "切换成功", Toast.LENGTH_SHORT).show();
                             }
 
@@ -111,14 +115,16 @@ public class ChangeSkinFragmentTheme extends ThemeBaseFragment implements View.O
         $(R.id.ll_black).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 File skin = new File("data/data/" + App.getApplication().getPackageName() + "/skin" + "/skin_black.skin");
                 if (!skin.exists()) {
-                    Toast.makeText(getMContext(), "皮肤包不存在", Toast.LENGTH_SHORT).show();
+                    UiUtils.showToast("皮肤包不存在");
                     return;
                 }
                 if (SkinConfig.getCustomSkinPath(getActivity()).equals("/data/data/" + App.getApplication().getPackageName() + "/skin" + "/skin_black.skin"))
+                {
+                    UiUtils.showToast("已经是当前皮肤了");
                     return;
+                }
                 SkinManager.getInstance().load(skin.getAbsolutePath(),
                         new ILoaderListener() {
                             @Override
@@ -128,12 +134,12 @@ public class ChangeSkinFragmentTheme extends ThemeBaseFragment implements View.O
 
                             @Override
                             public void onSuccess() {
-//                                Log.e(TAG, "loadSkinSuccess");
+                                UiUtils.showToast("切换成功");
                             }
 
                             @Override
                             public void onFailed() {
-//                                Log.e(TAG, "loadSkinFail");
+                                Log.e(TAG, "loadSkinFail");
                             }
                         });
             }
@@ -144,8 +150,8 @@ public class ChangeSkinFragmentTheme extends ThemeBaseFragment implements View.O
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.layout_right:
-                startActivity(new Intent(getActivity(), AddStaffActivity.class));
-                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+//                startActivity(new Intent(getActivity(), AddStaffActivity.class));
+//                getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.left_icon:
                 ((MainActivity) getActivity()).drawerLayout.openDrawer(GravityCompat.START);

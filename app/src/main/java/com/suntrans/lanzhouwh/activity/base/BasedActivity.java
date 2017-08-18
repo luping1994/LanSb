@@ -8,6 +8,7 @@ import android.support.v4.widget.SlidingPaneLayout;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import com.suntrans.lanzhouwh.R;
 import com.trello.rxlifecycle.LifecycleProvider;
@@ -40,10 +41,16 @@ public  class BasedActivity extends SkinBaseActivity implements LifecycleProvide
             mlist.add(this);
         }
         lifecycleSubject.onNext(ActivityEvent.CREATE);
+        if (isTranslucentStatus())
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
     }
 
     @Override
     public boolean isApplyStatusBarColor() {
+        return true;
+    }
+
+    public boolean isTranslucentStatus(){
         return true;
     }
 

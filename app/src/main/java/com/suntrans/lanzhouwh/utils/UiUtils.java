@@ -13,8 +13,6 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.androidadvance.topsnackbar.TSnackbar;
 import com.suntrans.lanzhouwh.App;
 import com.suntrans.lanzhouwh.R;
 
@@ -190,33 +188,5 @@ public class UiUtils {
 		}
 		return false;
 	}
-	public static   void showMessage(View view,String msg) {
-		TSnackbar snackbar = TSnackbar.make(view, msg, TSnackbar.LENGTH_LONG);
-		snackbar.setActionTextColor(Color.WHITE);
-		snackbar.setIconLeft(R.drawable.ic_info,24);
-		View snackbarView = snackbar.getView();
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
-			snackbarView.setPadding(0,StatusBarCompat.getStatusBarHeight(view.getContext()),0,0);
-		}
-		snackbarView.setBackgroundColor(Color.parseColor("#FFFFFF"));
-		TextView textView = (TextView) snackbarView.findViewById(com.androidadvance.topsnackbar.R.id.snackbar_text);
-		textView.setTextColor(Color.BLACK);
-		textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-		snackbar.show();
-	}
 
-	public static void showMessageWarning(View view, String msg) {
-		TSnackbar snackbar = TSnackbar.make(view, msg, TSnackbar.LENGTH_LONG);
-		snackbar.setActionTextColor(Color.WHITE);
-		snackbar.setIconLeft(R.drawable.ic_info_read, 24);
-		View snackbarView = snackbar.getView();
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-			snackbarView.setPadding(0, StatusBarCompat.getStatusBarHeight(view.getContext()), 0, 0);
-		}
-		snackbarView.setBackgroundColor(Color.parseColor("#FFDADA"));
-		TextView textView = (TextView) snackbarView.findViewById(com.androidadvance.topsnackbar.R.id.snackbar_text);
-		textView.setTextColor(Color.BLACK);
-		textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-		snackbar.show();
-	}
 }

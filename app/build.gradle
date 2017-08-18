@@ -7,18 +7,18 @@ android {
         applicationId "com.suntrans.lanzhouwh"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 30
+        versionCode 33
         versionName "1.2.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true//这行
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "boolean", "ENABLE_DEBUG", "false"
-//            shrinkResources true
-//            zipAlignEnabled true
+            shrinkResources true
+            zipAlignEnabled true
         }
         debug{
             buildConfigField "boolean", "ENABLE_DEBUG", "true"
@@ -81,7 +81,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.6.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
 
-    compile('io.reactivex:rxnetty-tcp:0.5.2-RC1') { exclude group: 'org.openjdk.jmh' }
+//    compile('io.reactivex:rxnetty-tcp:0.5.2-RC1') { exclude group: 'org.openjdk.jmh' }
 
 
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
@@ -100,10 +100,10 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
 
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.1'
-    compile 'com.androidadvance:topsnackbar:1.1.1'
+//    compile 'com.androidadvance:topsnackbar:1.1.1'
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.lapism:searchview:4.0'
-//    compile 'com.pgyersdk:sdk:2.5.6'
+    compile 'com.pgyersdk:sdk:2.6.9'
     compile 'com.tencent.bugly:crashreport_upgrade:latest.release'//其中latest.release指代最新版本号，也可以指定明确的
     compile 'com.alibaba:fastjson:1.1.56.android'
 

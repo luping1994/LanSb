@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +20,8 @@ import com.suntrans.lanzhouwh.BuildConfig;
 import com.suntrans.lanzhouwh.R;
 import com.suntrans.lanzhouwh.activity.MainActivity;
 import com.suntrans.lanzhouwh.activity.base.BasedFragment;
+import com.suntrans.lanzhouwh.utils.StatusBarCompat;
+
 import android.content.Context;
 
 /**
@@ -50,6 +53,18 @@ public class About_Fragment extends BasedFragment implements View.OnClickListene
     }
 
     private void initView(View view) {
+        View statusBar = view.findViewById(R.id.statusbar);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            int statusBarHeight = StatusBarCompat.getStatusBarHeight(getContext());
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) statusBar.getLayoutParams();
+            params.height = statusBarHeight;
+            statusBar.setLayoutParams(params);
+            statusBar.setVisibility(View.VISIBLE);
+        }else {
+            statusBar.setVisibility(View.GONE);
+
+        }
         titleName = (TextView) view.findViewById(R.id.title_name);
         toolbarRight = (RelativeLayout) view.findViewById(R.id.layout_right);
         textView = (TextView) view.findViewById(R.id.tv_right);
@@ -59,16 +74,16 @@ public class About_Fragment extends BasedFragment implements View.OnClickListene
         titleName.setText("关于");
         leftIcon.setOnClickListener(this);
         toolbarRight.setOnClickListener(this);
-        guangwang = (TextView) view.findViewById(R.id.guangwang);   guangwang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction("android.intent.action.VIEW");
-                Uri content_url = Uri.parse("http://www.suntrans.net/");
-                intent.setData(content_url);
-                startActivity(intent);
-            }
-        });
+//        guangwang = (TextView) view.findViewById(R.id.guangwang);   guangwang.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent();
+//                intent.setAction("android.intent.action.VIEW");
+//                Uri content_url = Uri.parse("http://www.suntrans.net/");
+//                intent.setData(content_url);
+//                startActivity(intent);
+//            }
+//        });
 
         TextView textView = (TextView) view.findViewById(R.id.version);
         textView .setText("版本号:"+BuildConfig.VERSION_NAME);

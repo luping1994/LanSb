@@ -63,8 +63,8 @@ public abstract class SkinBaseActivity extends AppCompatActivity implements ISki
             return;
         }
         mSkinInflaterFactory.applySkin();
-        if (isApplyStatusBarColor())
-            changeStatusColor();
+//        if (isApplyStatusBarColor())
+//            changeStatusColor();
 //        //设置window的背景色
 //        Drawable drawable = new ColorDrawable(SkinManager.getInstance().getColorPrimaryDark());
 //        getWindow().setBackgroundDrawable(drawable);

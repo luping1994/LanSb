@@ -1,6 +1,7 @@
 package com.suntrans.lanzhouwh.fragment.theme;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.suntrans.lanzhouwh.App;
 import com.suntrans.lanzhouwh.R;
 import com.suntrans.lanzhouwh.activity.MainActivity;
+import com.suntrans.lanzhouwh.utils.StatusBarCompat;
 import com.suntrans.lanzhouwh.utils.UiUtils;
 
 import java.io.File;
@@ -58,6 +60,20 @@ public class ChangeSkinFragmentTheme extends ThemeBaseFragment implements View.O
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+        View statusBar = view.findViewById(R.id.statusbar);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            int statusBarHeight = StatusBarCompat.getStatusBarHeight(getContext());
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) statusBar.getLayoutParams();
+            params.height = statusBarHeight;
+            statusBar.setLayoutParams(params);
+            statusBar.setVisibility(View.VISIBLE);
+        }else {
+            statusBar.setVisibility(View.GONE);
+
+        }
+
         titleName = (TextView) view.findViewById(R.id.title_name);
         leftIcon = (LinearLayout) view.findViewById(R.id.left_icon);
         titleName.setText("选择主题颜色");

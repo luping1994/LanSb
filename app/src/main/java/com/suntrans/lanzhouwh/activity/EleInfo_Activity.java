@@ -69,7 +69,6 @@ public class EleInfo_Activity extends BasedActivity implements SwipeRefreshLayou
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_eleinfo);
         ButterKnife.bind(this);
         setUpToolBar();

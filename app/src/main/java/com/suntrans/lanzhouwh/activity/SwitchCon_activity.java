@@ -57,6 +57,11 @@ public class SwitchCon_activity extends BasedActivity {
     }
 
     @Override
+    public boolean isTranslucentStatus() {
+        return true;
+    }
+
+    @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         setUpSearchView();
@@ -67,15 +72,11 @@ public class SwitchCon_activity extends BasedActivity {
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
         adapter.addFragment( HardwareFragment.newInstance("照明"), getString(R.string.zhaoming));
         adapter.addFragment( HardwareFragment.newInstance("插座"), getString(R.string.sockets));
-
         ViewPager viewPager = (IViewPager) findViewById(R.id.viewPager);
-
         viewPager.setAdapter(adapter);
-
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 //        tabLayout.setTabMode(TabLayout.MODE_FIXED);
 //        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

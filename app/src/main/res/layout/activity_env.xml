@@ -13,7 +13,7 @@
         xmlns:skin="http://schemas.android.com/android/skin"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="50dp"
         android:background="@color/transparent"
         app:contentInsetStart="0dp"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -22,7 +22,7 @@
 
         <Spinner
             android:id="@+id/spinner"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center">

@@ -110,7 +110,7 @@ public class EnvActivity extends BasedActivity {
         viewpager.addOnPageChangeListener(new PagerListener());
         spinner = (Spinner) findViewById(R.id.spinner);
         spinnerDatas = new ArrayList<>();
-        spinnerAdapter = new ArrayAdapter<String>(this, R.layout.item_spinner, spinnerDatas);
+        spinnerAdapter = new ArrayAdapter<String>(this, R.layout.item_spinner,R.id.tv_spinner, spinnerDatas);
         spinner.setAdapter(spinnerAdapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

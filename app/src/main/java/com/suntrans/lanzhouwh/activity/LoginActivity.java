@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Base64;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ import com.suntrans.lanzhouwh.views.EditView;
 import com.suntrans.lanzhouwh.views.LoadingDialog;
 import com.trello.rxlifecycle.android.ActivityEvent;
 
+import retrofit2.HttpException;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -48,13 +50,16 @@ public class LoginActivity extends BasedActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+
         setContentView(R.layout.activity_login1);
 //        StatusBarCompat.compat(this, Color.TRANSPARENT);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         login = (Button) findViewById(R.id.login);
         ed_account = (EditView) findViewById(account);
         ed_password = (EditView) findViewById(R.id.password);
-        forget = (TextView) findViewById(R.id.forget);
+//        forget = (TextView) findViewById(R.id.forget);
 //        activate = (Button) findViewById(R.id.activate);
 
         String zhanghao = getSharedPreferences("config", Context.MODE_PRIVATE).getString("account", "");
@@ -62,7 +67,7 @@ public class LoginActivity extends BasedActivity implements View.OnClickListener
         ed_account.setText(zhanghao);
 //        ed_password.setText(mima);
 
-        forget.setOnClickListener(this);
+//        forget.setOnClickListener(this);
         login.setOnClickListener(this);
 //        activate.setOnClickListener(this);
     }
@@ -103,7 +108,7 @@ public class LoginActivity extends BasedActivity implements View.OnClickListener
             UiUtils.showToast("请输入密码");
             return;
         }
-        dialog1 = new LoadingDialog(this,R.style.loading_dialog);
+        dialog1 = new LoadingDialog(this, R.style.loading_dialog);
         dialog1.setWaitText("正在登录..");
         dialog1.setCancelable(false);
         dialog1.show();
@@ -120,7 +125,17 @@ public class LoginActivity extends BasedActivity implements View.OnClickListener
                     @Override
                     public void onError(Throwable e) {
                         e.printStackTrace();
-                        handler.sendEmptyMessage(LOGIN_FILED);
+                        if (e instanceof HttpException) {
+                            UiUtils.showToast("网络连接失败,请检查你的网络");
+                        }
+                        if (e.getMessage() != null) {
+                            if (e.getMessage().equals("HTTP 401 Unauthorized") || e.getMessage().equals("HTTP 400 Bad Request")) {
+                                UiUtils.showToast("账号或密码错误");
+                            }
+                        }
+                        if (dialog1 != null)
+                            dialog1.dismiss();
+
                     }
 
                     @Override
@@ -169,7 +184,7 @@ public class LoginActivity extends BasedActivity implements View.OnClickListener
                 case LOGIN_SUCCESS:
                     dialog1.dismiss();
                     Intent intent = new Intent();
-                    intent.putExtra("info",userInfo);
+                    intent.putExtra("info", userInfo);
                     intent.setClass(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -206,15 +221,15 @@ public class LoginActivity extends BasedActivity implements View.OnClickListener
                             handler.sendEmptyMessage(LOGIN_FILED);
                             return;
                         }
-                        if (info.getMessage()!=null){
+                        if (info.getMessage() != null) {
                             handler.sendEmptyMessage(LOGIN_FILED);
                             return;
                         }
-                        userInfo=info;
+                        userInfo = info;
                         byte[] bytes = ParcelableUtil.marshall(info);
-                        String s = Base64.encodeToString(bytes,Base64.DEFAULT);
+                        String s = Base64.encodeToString(bytes, Base64.DEFAULT);
                         App.getSharedPreferences().edit().putString("userinfo", s)
-                                .putBoolean("isAdmin",info.getRusergid().equals("1")?true:false)
+                                .putBoolean("isAdmin", info.getRusergid().equals("1") ? true : false)
                                 .commit();
                         handler.sendMessage(Message.obtain(handler, LOGIN_SUCCESS));
                     }

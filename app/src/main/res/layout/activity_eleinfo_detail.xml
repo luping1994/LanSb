@@ -127,6 +127,7 @@
                        android:textColor="@color/black" />
 
                    <Button
+                       android:visibility="invisible"
                        skin:enable="true"
                        android:id="@+id/recharge"
                        android:textColor="@color/white"

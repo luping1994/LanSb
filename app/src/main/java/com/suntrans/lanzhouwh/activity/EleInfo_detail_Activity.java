@@ -92,6 +92,8 @@ public class EleInfo_detail_Activity extends BasedActivity implements OnChartVal
         };
     }
 
+
+
     @Override
     protected void onResume() {
         super.onResume();

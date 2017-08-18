@@ -1,44 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true"
+    xmlns:skin="http://schemas.android.com/android/skin"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:skin="http://schemas.android.com/android/skin"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    skin:enable="true">
+    <TextView
         skin:enable="true"
-        android:elevation="3dp"
+        android:background="@color/colorPrimaryDark"
+        android:id="@+id/statusbar"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/toolbar"
         android:layout_width="fill_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
-        android:fitsSystemWindows="true"
+        android:elevation="3dp"
         android:orientation="horizontal"
-        >
+        skin:enable="true">
 
         <LinearLayout
-            android:background="?attr/selectableItemBackground"
-            android:layout_alignParentLeft="true"
             android:id="@+id/left_icon"
             android:layout_width="50dip"
             android:layout_height="50dip"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin">
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:background="?attr/selectableItemBackground">
 
             <ImageView
-                android:background="?attr/selectableItemBackground"
                 android:id="@+id/left_image"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
+                android:background="?attr/selectableItemBackground"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_nav" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_centerInParent="true"
             android:id="@+id/layout_title"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_centerInParent="true"
             android:orientation="vertical">
 
             <TextView
@@ -53,20 +59,20 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_alignParentRight="true"
-            android:background="?attr/selectableItemBackground"
             android:id="@+id/layout_right"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
             android:layout_gravity="center"
-            android:layout_marginRight="@dimen/activity_horizontal_margin">
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:background="?attr/selectableItemBackground">
 
             <TextView
-                android:gravity="center|right"
                 android:id="@+id/tv_right"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:gravity="center|right"
                 android:text="报警配置"
                 android:textColor="@color/white"
                 android:textSize="@dimen/subtitle_size"
@@ -92,68 +98,71 @@
         </RelativeLayout>
 
     </RelativeLayout>
+
     <LinearLayout
-        android:orientation="vertical"
-        android:background="#e0e0e0"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#e0e0e0"
+        android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_marginTop="100dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp">
+
             <ImageView
                 android:id="@+id/rl"
                 android:layout_width="75dp"
-                android:src="@mipmap/ic_launcher"
                 android:layout_height="75dp"
-                android:scaleType="fitXY"
-                android:layout_centerInParent="true">
+                android:layout_centerInParent="true"
+                android:src="@drawable/logo2">
 
             </ImageView>
         </RelativeLayout>
+
         <RelativeLayout
-            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
 
             <TextView
                 android:id="@+id/appName"
-                android:gravity="center"
-                android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
                 android:text="@string/app_name"
-                android:textColor="@color/black"
-                android:layout_height="30dp" />
+                android:textColor="@color/black" />
 
             <TextView
-                android:layout_below="@+id/appName"
                 android:id="@+id/version"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/appName"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:text="当前版本 1.0.0"
-               />
+                android:text="当前版本 1.0.0" />
+
             <TextView
-                android:layout_marginBottom="4dp"
                 android:id="@+id/guangwang"
-                android:autoLink="all"
-                android:textColor="@color/blue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_above="@+id/name1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:autoLink="phone"
                 android:gravity="center"
-                android:text="官网"
+                android:text="服务热线137-1052-2185"
+                android:textColor="@color/blue"
                 android:textSize="14sp" />
+
             <TextView
-                android:paddingBottom="8dp"
                 android:id="@+id/name1"
-                android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:gravity="center"
-                android:text="@string/company_name"
+                android:paddingBottom="8dp"
+                android:text="@string/copyright"
                 android:textSize="12sp" />
         </RelativeLayout>
 

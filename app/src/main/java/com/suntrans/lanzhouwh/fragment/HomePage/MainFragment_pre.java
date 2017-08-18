@@ -2,6 +2,7 @@ package com.suntrans.lanzhouwh.fragment.HomePage;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -19,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -34,6 +36,7 @@ import com.suntrans.lanzhouwh.api.RetrofitHelper;
 import com.suntrans.lanzhouwh.bean.genitem.FloorItem;
 import com.suntrans.lanzhouwh.utils.LogUtil;
 import com.suntrans.lanzhouwh.utils.RxBus;
+import com.suntrans.lanzhouwh.utils.StatusBarCompat;
 import com.suntrans.lanzhouwh.views.LoadingPage;
 import com.trello.rxlifecycle.android.FragmentEvent;
 
@@ -73,6 +76,18 @@ public class MainFragment_pre extends BasedFragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        View statusBar = view.findViewById(R.id.statusbar);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            int statusBarHeight = StatusBarCompat.getStatusBarHeight(getContext());
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) statusBar.getLayoutParams();
+            params.height = statusBarHeight;
+            statusBar.setLayoutParams(params);
+            statusBar.setVisibility(View.VISIBLE);
+        }else {
+            statusBar.setVisibility(View.GONE);
+
+        }
+
         loadingpage = (RelativeLayout) view.findViewById(R.id.loadingpage);
         errorpage = (RelativeLayout) view.findViewById(R.id.errorpage);
         btError = (Button) view.findViewById(R.id.bt_error);

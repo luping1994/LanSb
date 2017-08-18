@@ -152,3 +152,26 @@
 }
 -dontwarn com.pgyersdk.**
 -keep class com.pgyersdk.** { *; }
+
+# bugly
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}
+-keep class android.support.**{*;}
+
+
+-keep class com.chad.library.adapter.** {
+*;
+}
+-keep public class * extends com.chad.library.adapter.base.BaseQuickAdapter
+-keep public class * extends com.chad.library.adapter.base.BaseViewHolder
+-keepclassmembers public class * extends com.chad.library.adapter.base.BaseViewHolder {
+     <init>(android.view.View);
+}
+
+-keepattributes SourceFile,LineNumberTable
+-keep class com.parse.*{ *; }
+-dontwarn com.parse.**
+-dontwarn com.squareup.picasso.**
+-keepclasseswithmembernames class * {
+    native <methods>;
+}

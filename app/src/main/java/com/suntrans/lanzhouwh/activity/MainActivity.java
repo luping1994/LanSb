@@ -3,6 +3,8 @@ package com.suntrans.lanzhouwh.activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.design.widget.NavigationView;
@@ -14,9 +16,11 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.pgyersdk.update.PgyUpdateManager;
 import com.suntrans.lanzhouwh.R;
 import com.suntrans.lanzhouwh.activity.base.BasedActivity;
 import com.suntrans.lanzhouwh.bean.userinfo.UserInfos;
@@ -46,10 +50,15 @@ public class MainActivity extends BasedActivity implements View.OnClickListener,
         LogUtil.e("MainActivity创建了");
 
         setContentView(R.layout.activity_main);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//            getWindow().setStatusBarColor(Color.TRANSPARENT);
+//            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+        }
         initView();
         setupNavagationView();
         initFragments();
-
+        PgyUpdateManager.register(this, "com.suntrans.lanzhouwh.fileProvider");
 
     }
 
@@ -62,6 +71,8 @@ public class MainActivity extends BasedActivity implements View.OnClickListener,
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
     }
+
+
 
 
     @Override
@@ -97,7 +108,6 @@ public class MainActivity extends BasedActivity implements View.OnClickListener,
                     about_fragment,
                     fragment
             };
-            getSupportFragmentManager().beginTransaction().replace(R.id.content, main_fragment).commit();
         } else if (infos.getRusergid().equals("2")) {
             MainFragment_rent main_fragment = MainFragment_rent.newInstance();
 //            Comapny_Fragment comapnyFragment = Comapny_Fragment.newInstance();
@@ -111,8 +121,9 @@ public class MainActivity extends BasedActivity implements View.OnClickListener,
                     about_fragment,
                     fragment
             };
-            getSupportFragmentManager().beginTransaction().replace(R.id.content, main_fragment).commit();
         }
+        changFragment(0, R.id.nav_home);
+
 //        SlidingPaneLayout
     }
 
@@ -214,11 +225,12 @@ public class MainActivity extends BasedActivity implements View.OnClickListener,
     protected void onDestroy() {
         super.onDestroy();
         LogUtil.e("MainActivity销毁了");
+        PgyUpdateManager.unregister();
     }
 
     @Override
     public boolean isApplyStatusBarColor() {
-        return true;
+        return false;
     }
 
 

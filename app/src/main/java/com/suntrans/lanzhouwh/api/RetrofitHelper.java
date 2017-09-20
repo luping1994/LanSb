@@ -24,7 +24,7 @@ public class RetrofitHelper {
     public static final String BASE_URL = "http://yunapp.egird.com";
 //    public static final String BASE_URL2 = "http://27.17.32.182:8002";
     public static final String BASE_URL2 = "http://wanhua.suntrans.net:8762";
-    public static final String BASE_URL3 = "http://wanhua.suntrans-cloud.com";
+    public static final String BASE_URL3 = "http://wanhua.suntrans-cloud.com:8778";
 
     private static OkHttpClient mOkHttpClient;
 

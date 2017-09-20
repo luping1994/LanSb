@@ -380,7 +380,7 @@ public class EnvActivity extends BasedActivity {
             Intent intent = new Intent();
             intent.putExtra("id", datas.get(viewpager.getCurrentItem()).ssid);
 //            intent.putExtra("id", "366");
-            intent.setClass(this, Setting_Activity.class);
+            intent.setClass(this, SettingNew_Activity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

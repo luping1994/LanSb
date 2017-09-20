@@ -111,7 +111,6 @@ public class SwitchCon_activity extends BasedActivity {
 
         searchView = (SearchView) findViewById(R.id.searchView);
         searchView.setArrowOnly(true);
-
         searchView.setVersion(SearchView.VERSION_TOOLBAR);
 //        searchView.setVersion(SearchView.VERSION_MENU_ITEM);
         searchView.setVersionMargins(SearchView.VERSION_MARGINS_TOOLBAR_SMALL);

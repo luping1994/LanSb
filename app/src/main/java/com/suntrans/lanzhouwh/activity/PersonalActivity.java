@@ -27,7 +27,6 @@ public class PersonalActivity extends BasedActivity {
     TextView titleName;
     private int theme = 0;
     LinearLayout leftIcon;
-    private UserInfos info;
     private TextView nickname;
     private TextView name;
 
@@ -39,12 +38,7 @@ public class PersonalActivity extends BasedActivity {
         tvRight = (TextView) findViewById(R.id.tv_right);
         titleName = (TextView) findViewById(R.id.title_name);
         titleName.setText("个人中心");
-        String userinfo = App.getSharedPreferences().getString("userinfo", "-1");
-        if (!userinfo.equals("-1")) {
-            byte[] s = Base64.decode(userinfo, Base64.DEFAULT);
-            Parcel parcel = ParcelableUtil.unmarshall(s);
-            info = UserInfos.CREATOR.createFromParcel(parcel);
-        }
+
         leftIcon = (LinearLayout) findViewById(R.id.left_icon);
         leftIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,8 +50,10 @@ public class PersonalActivity extends BasedActivity {
         name = (TextView) findViewById(R.id.name);
         nickname = (TextView) findViewById(R.id.nickname);
 
-        nickname.setText("昵称：" + info.getNickname());
-        name.setText(info.getRusername());
+        String names = App.getSharedPreferences().getString("nickname","万华大厦");
+        String realname = App.getSharedPreferences().getString("realname","万华大厦");
+        nickname.setText("昵称：" + names);
+        name.setText(realname);
     }
 
     public void signOut(View view) {

@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.pgyersdk.update.PgyUpdateManager;
 import com.suntrans.lanzhouwh.App;
 import com.suntrans.lanzhouwh.R;
 import com.suntrans.lanzhouwh.activity.base.BasedActivity;
@@ -69,6 +70,8 @@ public class LoginActivity extends BasedActivity implements View.OnClickListener
 
 //        forget.setOnClickListener(this);
         login.setOnClickListener(this);
+        PgyUpdateManager.register(this, "com.suntrans.lanzhouwh.fileProvider");
+
 //        activate.setOnClickListener(this);
     }
 
@@ -98,8 +101,8 @@ public class LoginActivity extends BasedActivity implements View.OnClickListener
     }
 
     private void checkLogin() {
-        String account = ed_account.getText().toString();
-        String password = ed_password.getText().toString();
+        final String account = ed_account.getText().toString();
+        final String password = ed_password.getText().toString();
         if (account == null || account.equals("")) {
             UiUtils.showToast("请输入账号");
             return;
@@ -147,7 +150,9 @@ public class LoginActivity extends BasedActivity implements View.OnClickListener
                                     SharedPreferences.Editor editor = App.getSharedPreferences().edit();
                                     editor.putString("expires_in1", info.expires_in);
                                     editor.putString("access_token1", info.access_token);
-                                    editor.putLong("firsttime1", System.currentTimeMillis());
+                                    editor.putLong("firsttime1", System.currentTimeMillis())
+                                            .putString("account",account)
+                                            .putString("password",password);
                                     editor.commit();
                                     handler.sendEmptyMessageDelayed(GETINFO, 300);
                                 }
@@ -230,6 +235,9 @@ public class LoginActivity extends BasedActivity implements View.OnClickListener
                         String s = Base64.encodeToString(bytes, Base64.DEFAULT);
                         App.getSharedPreferences().edit().putString("userinfo", s)
                                 .putBoolean("isAdmin", info.getRusergid().equals("1") ? true : false)
+                                .putString("rusergid",info.getRusergid())
+                                .putString("nickname",info.getNickname())
+                                .putString("realname",info.getRusername())
                                 .commit();
                         handler.sendMessage(Message.obtain(handler, LOGIN_SUCCESS));
                     }

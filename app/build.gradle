@@ -7,8 +7,8 @@ android {
         applicationId "com.suntrans.lanzhouwh"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 35
-        versionName "1.2.4"
+        versionCode 36
+        versionName "1.2.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true//这行
     }
@@ -103,7 +103,7 @@ dependencies {
 //    compile 'com.androidadvance:topsnackbar:1.1.1'
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.lapism:searchview:4.0'
-    compile 'com.pgyersdk:sdk:2.6.9'
+    compile 'com.pgyersdk:sdk:2.7.6'
     compile 'com.tencent.bugly:crashreport_upgrade:latest.release'//其中latest.release指代最新版本号，也可以指定明确的
     compile 'com.alibaba:fastjson:1.1.56.android'
 

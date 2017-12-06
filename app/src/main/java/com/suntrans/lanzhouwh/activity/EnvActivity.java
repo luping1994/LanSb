@@ -419,16 +419,22 @@ public class EnvActivity extends BasedActivity {
             new AlertDialog.Builder(this)
                     .setCancelable(false)
                     .setMessage("账号为空")
+                    .setNegativeButton("关闭", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    })
                     .create().show();
             return;
         }
         String time = getIntent().getStringExtra("time");
         String sig = getIntent().getStringExtra("sig");
         String siged = Encryp.md5(time + key);
-        if (!sig.equals(siged)) {
+        if (!siged.equals(sig)) {
             dialog.dismiss();
             new AlertDialog.Builder(EnvActivity.this)
-                    .setMessage("非法操作")
+                    .setMessage("无效的用户名")
                     .setCancelable(false)
                     .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override

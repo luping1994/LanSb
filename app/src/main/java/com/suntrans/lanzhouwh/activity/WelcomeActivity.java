@@ -25,6 +25,7 @@ import com.suntrans.lanzhouwh.utils.ParcelableUtil;
 import com.suntrans.lanzhouwh.utils.UiUtils;
 import com.trello.rxlifecycle.android.ActivityEvent;
 
+import retrofit2.HttpException;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -36,7 +37,7 @@ import rx.schedulers.Schedulers;
 public class WelcomeActivity extends BasedActivity {
 
     private UserInfos info;
-    private boolean isRemote =false;
+    private boolean isRemote = false;
     private String gotoType;
 
     @Override
@@ -75,34 +76,20 @@ public class WelcomeActivity extends BasedActivity {
 //        if (account != null) {
 //            checkRemoteAccount(account);
 //        } else {
-            checkLocalState();
+        checkLocalState();
 //        }
     }
-    private static final String key = "QxrLiqUU1tB5YIMKioiNT0az6f7xl1hK";
-    private void checkRemoteAccount(String account) {
-        String time = getIntent().getStringExtra("time");
-        String sig = getIntent().getStringExtra("sig");
-        String siged = Encryp.md5(time+key);
-        gotoType = getIntent().getStringExtra("type");
-        if (!sig.equals(siged)||gotoType==null){
-            new AlertDialog.Builder(WelcomeActivity.this)
-                    .setMessage("非法操作")
-                    .setCancelable(false)
-                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                        }
-                    })
-                    .create().show();
+
+    private void checkLocalState() {
+
+
+        String account = App.getSharedPreferences().getString("account", "-1");
+        String password = App.getSharedPreferences().getString("password", "-1");
+        if ("-1".equals(account) || "-1".equals(password)) {
+            handler.sendEmptyMessage(LOGIN_FILED);
             return;
         }
-        isRemote = true;
-        LogUtil.i("account="+account);
-        LogUtil.i("time="+time);
-        LogUtil.i("sig="+sig);
-        LogUtil.i("siged="+siged);
-        RetrofitHelper.getLoginApi2().login2("password", "suntrans", "suntrans", account, "YvhndJ3QhWvyZfUHHDVdjeF6r3TYl9HtvfwX8ET3")
+        RetrofitHelper.getLoginApi2().login2("password", "suntrans", "suntrans", account, password)
                 .compose(this.<LoginResult>bindUntilEvent(ActivityEvent.DESTROY))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -115,8 +102,8 @@ public class WelcomeActivity extends BasedActivity {
                     @Override
                     public void onError(Throwable e) {
                         e.printStackTrace();
+                        handler.sendEmptyMessageDelayed(LOGIN_FILED,2000);
 
-                        handler.sendEmptyMessage(LOGIN_FILED);
 
                     }
 
@@ -133,54 +120,17 @@ public class WelcomeActivity extends BasedActivity {
                                     editor.commit();
                                     handler.sendEmptyMessageDelayed(GETINFO, 300);
                                 }
-                            }else {
-                                handler.sendEmptyMessage(LOGIN_FILED);
+                            } else {
+                                handler.sendEmptyMessageDelayed(LOGIN_FILED,2000);
+
                             }
                         } else {
-                            handler.sendEmptyMessage(LOGIN_FILED);
                             LogUtil.i(info.error_description);
+                            handler.sendEmptyMessageDelayed(LOGIN_FILED,2000);
+
                         }
                     }
                 });
-    }
-
-    private void checkLocalState() {
-        String access_token = App.getSharedPreferences().getString("access_token1", "-1");
-        String userinfo = App.getSharedPreferences().getString("userinfo", "-1");
-        info = null;
-        if (!userinfo.equals("-1")) {
-            byte[] s = Base64.decode(userinfo, Base64.DEFAULT);
-            Parcel parcel = ParcelableUtil.unmarshall(s);
-            info = UserInfos.CREATOR.createFromParcel(parcel);
-        }
-        if (access_token.equals("-1")) {
-            handler2.sendEmptyMessageDelayed(START_LOGIN, 1800);
-        } else {
-            try {
-                String expires_in = App.getSharedPreferences().getString("expires_in1", "-1");
-                long firsttime = App.getSharedPreferences().getLong("firsttime1", -1l);
-                long currenttime = System.currentTimeMillis();
-                long d = (currenttime - firsttime) / 1000;
-//                LogUtil.i("时间差" + d);
-//                LogUtil.i("过期时间" + expires_in);
-//                LogUtil.i("过期时间-6天:" + (Long.valueOf(expires_in) - 6 * 24 * 3600));
-//                String a = d > (Long.valueOf(expires_in) - 6 * 24 * 3600) ? "过期了" : "没过期";
-//                LogUtil.i("是否过期:" + a);
-                if (d > (Long.valueOf(expires_in) - 6 * 24 * 3600)) {
-                    handler2.sendEmptyMessageDelayed(START_LOGIN, 2000);
-                } else {
-                    if (info != null)
-                        handler2.sendEmptyMessageDelayed(START_MAIN, 2000);
-                    else
-                        handler2.sendEmptyMessageDelayed(START_LOGIN, 2000);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                handler2.sendEmptyMessageDelayed(START_LOGIN, 2000);
-
-            }
-
-        }
     }
 
 
@@ -192,6 +142,7 @@ public class WelcomeActivity extends BasedActivity {
     }
 
     public UserInfos userInfo;
+
     private void getUserInfo() {
         RetrofitHelper.getApi2().getUserInfo().compose(this.<UserInfos>bindUntilEvent(ActivityEvent.DESTROY))
                 .observeOn(AndroidSchedulers.mainThread())
@@ -206,27 +157,36 @@ public class WelcomeActivity extends BasedActivity {
                     @Override
                     public void onError(Throwable e) {
                         e.printStackTrace();
-                        handler.sendEmptyMessage(LOGIN_FILED);
+                        Intent intent = new Intent();
+                        intent.setClass(WelcomeActivity.this, LoginActivity.class);
+                        startActivity(intent);
                     }
 
                     @Override
                     public void onNext(UserInfos info) {
 
                         if (info == null) {
-                            handler.sendEmptyMessage(LOGIN_FILED);
+                            handler.sendEmptyMessageDelayed(LOGIN_FILED,2000);
                             return;
                         }
-                        if (info.getMessage()!=null){
-                            handler.sendEmptyMessage(LOGIN_FILED);
+                        if (info.getMessage() != null) {
+                            handler.sendEmptyMessageDelayed(LOGIN_FILED,2000);
+
                             return;
                         }
-                        userInfo=info;
+                        userInfo = info;
                         byte[] bytes = ParcelableUtil.marshall(info);
-                        String s = Base64.encodeToString(bytes,Base64.DEFAULT);
+                        String s = Base64.encodeToString(bytes, Base64.DEFAULT);
                         App.getSharedPreferences().edit().putString("userinfo", s)
-                                .putBoolean("isAdmin",info.getRusergid().equals("1")?true:false)
+                                .putBoolean("isAdmin", info.getRusergid().equals("1") ? true : false)
+                                .putString("rusergid", info.getRusergid())
+                                .putString("nickname", info.getNickname())
+                                .putString("realname",info.getRusername())
+
                                 .commit();
-                        handler.sendMessage(Message.obtain(handler, LOGIN_SUCCESS));
+                        Message obtain = Message.obtain(handler, LOGIN_SUCCESS);
+                        obtain.obj = info.getRusergid();
+                        handler.sendMessageDelayed(obtain,1800);
                     }
                 });
     }
@@ -240,30 +200,16 @@ public class WelcomeActivity extends BasedActivity {
             super.handleMessage(msg);
             switch (msg.what) {
                 case LOGIN_FILED:
-                   new AlertDialog.Builder(WelcomeActivity.this)
-                           .setMessage("登录失败")
-                           .setCancelable(false)
-                           .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                               @Override
-                               public void onClick(DialogInterface dialog, int which) {
-                                   finish();
-                               }
-                           })
-                           .create().show();
+                    Intent intent2 = new Intent();
+                    intent2.setClass(WelcomeActivity.this, LoginActivity.class);
+                    startActivity(intent2);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    finish();
                     break;
                 case LOGIN_SUCCESS:
                     Intent intent = new Intent();
-                    if (gotoType.equals("main")){
-                        intent.putExtra("info",userInfo);
-                        intent.putExtra("isRemote",isRemote);
-                        intent.setClass(WelcomeActivity.this, MainActivity.class);
-                    }else if (gotoType.equals("env")){
-                        intent.setClass(WelcomeActivity.this, Env_activity.class);
-                        intent.putExtra("isRemote",isRemote);
-                    }else {
-                        UiUtils.showToast("非法操作");
-                        break;
-                    }
+                    intent.putExtra("rusergid", (String) msg.obj);
+                    intent.setClass(WelcomeActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                     overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

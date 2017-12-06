@@ -4,6 +4,12 @@ import com.suntrans.lanzhouwh.utils.Encryp;
 
 import org.junit.Test;
 
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+import rx.Observable;
+import rx.Subscriber;
+
 import static org.junit.Assert.*;
 
 /**
@@ -28,5 +34,31 @@ public class ExampleUnitTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testRxJava(){
+        List<String> path = new CopyOnWriteArrayList<>();
+        path.add("a");
+        path.add("b");
+        path.add("c");
+
+        Observable.from(path)
+                .subscribe(new Subscriber<String>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        System.out.println(s);
+                    }
+                });
     }
 }

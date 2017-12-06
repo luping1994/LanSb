@@ -21,6 +21,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.pgyersdk.update.PgyUpdateManager;
+import com.suntrans.lanzhouwh.App;
 import com.suntrans.lanzhouwh.R;
 import com.suntrans.lanzhouwh.activity.base.BasedActivity;
 import com.suntrans.lanzhouwh.bean.userinfo.UserInfos;
@@ -40,7 +41,6 @@ public class MainActivity extends BasedActivity implements View.OnClickListener,
     private static final String TAG = "MainActivity";
     private Fragment[] fragments;
     private int currentIndex = 0;
-    private UserInfos infos;
     private String rusergid;
     private boolean isRemote;
 
@@ -63,16 +63,12 @@ public class MainActivity extends BasedActivity implements View.OnClickListener,
     }
 
     private void initView() {
-        infos = getIntent().getParcelableExtra("info");
-        if (infos != null)
-            rusergid = infos.getRusergid();
+        rusergid = App.getSharedPreferences().getString("rusergid", "1");
         content = (FrameLayout) findViewById(R.id.content);
         navView = (NavigationView) findViewById(R.id.nav_view);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
     }
-
-
 
 
     @Override
@@ -84,8 +80,8 @@ public class MainActivity extends BasedActivity implements View.OnClickListener,
         View view = navView.inflateHeaderView(R.layout.nav_header_main);
         navView.inflateMenu(R.menu.menu_nav);
         TextView name = (TextView) view.findViewById(R.id.name);
-        if (infos != null)
-            name.setText(infos.getNickname());
+        String nickname = App.getSharedPreferences().getString("nickname", "万华大厦");
+        name.setText(nickname);
         CircleImageView nav = (CircleImageView) view.findViewById(R.id.nav_head_avatar);
         nav.setOnClickListener(this);
         navView.setNavigationItemSelectedListener(this);
@@ -95,7 +91,7 @@ public class MainActivity extends BasedActivity implements View.OnClickListener,
     }
 
     private void initFragments() {
-        if (infos.getRusergid().equals("1")) {
+        if (rusergid.equals("1")) {
             MainFragment_pre main_fragment = MainFragment_pre.newInstance();
 //            Comapny_Fragment comapnyFragment = Comapny_Fragment.newInstance();
 //            Wallet_Fragment wallet_fragment = Wallet_Fragment.newInstance();
@@ -108,8 +104,21 @@ public class MainActivity extends BasedActivity implements View.OnClickListener,
                     about_fragment,
                     fragment
             };
-        } else if (infos.getRusergid().equals("2")) {
+        } else if (rusergid.equals("2")) {
             MainFragment_rent main_fragment = MainFragment_rent.newInstance();
+//            Comapny_Fragment comapnyFragment = Comapny_Fragment.newInstance();
+//            Wallet_Fragment wallet_fragment = Wallet_Fragment.newInstance();
+            About_Fragment about_fragment = About_Fragment.newInstance();
+            ChangeSkinFragmentTheme fragment = new ChangeSkinFragmentTheme();
+            fragments = new Fragment[]{
+                    main_fragment,
+//                    comapnyFragment,
+//                    wallet_fragment,
+                    about_fragment,
+                    fragment
+            };
+        } else {
+            MainFragment_pre main_fragment = MainFragment_pre.newInstance();
 //            Comapny_Fragment comapnyFragment = Comapny_Fragment.newInstance();
 //            Wallet_Fragment wallet_fragment = Wallet_Fragment.newInstance();
             About_Fragment about_fragment = About_Fragment.newInstance();

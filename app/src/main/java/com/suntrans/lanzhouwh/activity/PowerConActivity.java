@@ -62,7 +62,7 @@ public class PowerConActivity extends BasedActivity {
         String siged = Encryp.md5(time + key);
         if (!sig.equals(siged)) {
             new AlertDialog.Builder(PowerConActivity.this)
-                    .setMessage("非法操作")
+                    .setMessage("无效的用户名")
                     .setCancelable(false)
                     .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override

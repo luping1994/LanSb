@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,6 +30,7 @@ import com.suntrans.lanzhouwh.bean.sixsensor.EnvironmentResult;
 import com.suntrans.lanzhouwh.fragment.HomePage.Env_fragment;
 import com.suntrans.lanzhouwh.utils.LogUtil;
 import com.suntrans.lanzhouwh.utils.RxBus;
+import com.suntrans.lanzhouwh.utils.StatusBarCompat;
 import com.suntrans.lanzhouwh.utils.UiUtils;
 
 import java.util.ArrayList;
@@ -65,6 +68,8 @@ public class Env_activity extends BasedActivity {
     @BindView(R.id.bt_error)
     Button btError;
 
+    @BindView(R.id.webView)
+    WebView webView;
 
     private List<EnvironmentResult> datas;
     private Spinner spinner;
@@ -76,11 +81,22 @@ public class Env_activity extends BasedActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         setContentView(R.layout.activity_env);
+        StatusBarCompat.compat(findViewById(R.id.ll));
         ButterKnife.bind(this);
-        setUpToolBar();
-        init();
+        WebSettings settings = webView.getSettings();
+        settings.setJavaScriptEnabled(true);
+        webView.loadUrl("http://180.95.183.145:8760/sixsen.html");
+//        setUpToolBar();
+//        init();
+        findViewById(R.id.back)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
     }
 
     public void setUpToolBar() {
@@ -102,7 +118,7 @@ public class Env_activity extends BasedActivity {
         viewpager.addOnPageChangeListener(new PagerListener());
         spinner = (Spinner) findViewById(R.id.spinner);
         spinnerDatas = new ArrayList<>();
-        spinnerAdapter = new ArrayAdapter<String>(this, R.layout.item_spinner, R.id.tv_spinner,spinnerDatas);
+        spinnerAdapter = new ArrayAdapter<String>(this, R.layout.item_spinner, R.id.tv_spinner, spinnerDatas);
         spinner.setAdapter(spinnerAdapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

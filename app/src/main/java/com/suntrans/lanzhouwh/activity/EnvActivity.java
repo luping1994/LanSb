@@ -17,6 +17,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -34,6 +36,7 @@ import com.suntrans.lanzhouwh.fragment.HomePage.Env_fragment;
 import com.suntrans.lanzhouwh.utils.Encryp;
 import com.suntrans.lanzhouwh.utils.LogUtil;
 import com.suntrans.lanzhouwh.utils.RxBus;
+import com.suntrans.lanzhouwh.utils.StatusBarCompat;
 import com.suntrans.lanzhouwh.utils.UiUtils;
 import com.suntrans.lanzhouwh.views.LoadingDialog;
 import com.suntrans.lanzhouwh.views.WaitDialog;
@@ -74,6 +77,8 @@ public class EnvActivity extends BasedActivity {
     @BindView(R.id.bt_error)
     Button btError;
 
+    @BindView(R.id.webView)
+    WebView webView;
 
     private List<EnvironmentResult> datas;
     private Spinner spinner;
@@ -84,21 +89,30 @@ public class EnvActivity extends BasedActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         setContentView(R.layout.activity_env);
+        StatusBarCompat.compat(findViewById(R.id.ll));
+        findViewById(R.id.back)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
         ButterKnife.bind(this);
         setUpToolBar();
+
     }
 
     public void setUpToolBar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowTitleEnabled(false);
-        }
+//        toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        ActionBar actionBar = getSupportActionBar();
+//        if (actionBar != null) {
+//            actionBar.setDisplayHomeAsUpEnabled(true);
+//            actionBar.setDisplayShowTitleEnabled(false);
+//        }
         checkRemoteAccount(getIntent().getStringExtra("username"));
     }
 
@@ -143,7 +157,11 @@ public class EnvActivity extends BasedActivity {
                         }
                     }
                 });
-        getData(true);
+//        getData(true);
+        WebSettings settings = webView.getSettings();
+        settings.setJavaScriptEnabled(true);
+        webView.loadUrl("http://180.95.183.145:8760/sixsen.html");
+
     }
 
     @Override

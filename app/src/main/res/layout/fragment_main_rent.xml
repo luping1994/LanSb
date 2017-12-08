@@ -5,9 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    android:fitsSystemWindows="true"
+    android:fitsSystemWindows="false"
+    android:orientation="vertical"
     skin:enable="true">
-
+    <TextView
+        skin:enable="true"
+        android:background="@color/colorPrimaryDark"
+        android:id="@+id/statusbar"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

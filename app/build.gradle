@@ -7,8 +7,8 @@ android {
         applicationId "com.suntrans.lanzhouwh"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 36
-        versionName "1.2.5"
+        versionCode 39
+        versionName "1.2.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true//这行
     }
@@ -42,7 +42,7 @@ android {
             def fileName
             if (outputFile != null && outputFile.name.endsWith('.apk')) {
                 if (variant.buildType.name.equals('release')) {
-                    fileName = "wh_${defaultConfig.versionName}_${defaultConfig.versionCode}.apk"
+                    fileName = "${defaultConfig.applicationId}.apk"
                 } else if (variant.buildType.name.equals('debug')) {
                     fileName = "wh_${defaultConfig.versionName}_${defaultConfig.versionCode}_debug.apk"
                 }

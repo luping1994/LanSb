@@ -374,8 +374,9 @@ public class HardwareFragment extends BasedFragment  {
             UiUtils.showToast(result.getMsg());
             return;
         }
-//        LogUtil.i(TAG,"收到:"+msg1);
         String msg1 =result.getMsg();
+//        LogUtil.i(TAG,"收到:"+msg1);
+
         try {
             JSONObject jsonObject = new JSONObject(msg1);
 //            String device = jsonObject.getString("device");

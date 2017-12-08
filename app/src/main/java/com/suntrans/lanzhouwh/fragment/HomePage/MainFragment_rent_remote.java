@@ -2,6 +2,7 @@ package com.suntrans.lanzhouwh.fragment.HomePage;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -18,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lapism.searchview.SearchAdapter;
@@ -31,6 +33,7 @@ import com.suntrans.lanzhouwh.activity.base.BasedFragment;
 import com.suntrans.lanzhouwh.adapter.FragmentAdapter;
 import com.suntrans.lanzhouwh.fragment.Main.HardwareFragment;
 import com.suntrans.lanzhouwh.utils.RxBus;
+import com.suntrans.lanzhouwh.utils.StatusBarCompat;
 import com.suntrans.lanzhouwh.views.IViewPager;
 
 import java.util.ArrayList;
@@ -68,6 +71,21 @@ public class MainFragment_rent_remote extends BasedFragment {
         return view;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        View statusBar = view.findViewById(R.id.statusbar);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            int statusBarHeight = StatusBarCompat.getStatusBarHeight(getContext());
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) statusBar.getLayoutParams();
+            params.height = statusBarHeight;
+            statusBar.setLayoutParams(params);
+            statusBar.setVisibility(View.VISIBLE);
+        }else {
+            statusBar.setVisibility(View.GONE);
+
+        }
+
+    }
 
     public void setUpToolBar(View view) {
         toolbar.setTitle("智能控制");

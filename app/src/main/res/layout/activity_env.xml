@@ -3,10 +3,50 @@
     xmlns:skin="http://schemas.android.com/android/skin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:background="@drawable/env_bg"
-    android:orientation="vertical"
-    >
+    android:fitsSystemWindows="false"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <View
+            android:id="@+id/statusbar"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/env_bg" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </WebView>
+
+            <RelativeLayout
+                android:id="@+id/back"
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_back" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
 
     <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -15,35 +55,29 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/transparent"
+        android:visibility="gone"
         app:contentInsetStart="0dp"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        skin:enable="true">
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center">
+            android:gravity="center"
+            android:visibility="gone">
+
         </Spinner>
 
-        <!--<TextView-->
-        <!--android:id="@+id/title_name"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:text=""-->
-        <!--android:textColor="@color/white"-->
-        <!--android:textSize="18sp" />-->
 
     </android.support.v7.widget.Toolbar>
-
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar">
+        android:layout_below="@+id/ll"
+        android:visibility="gone">
 
         <include layout="@layout/loadpage_error" />
 
@@ -56,15 +90,13 @@
             android:orientation="vertical">
 
 
-
             <LinearLayout
-                skin:enable="true"
                 android:id="@+id/ll_point_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal">
-            </LinearLayout>
+                android:orientation="horizontal"
+                skin:enable="true"></LinearLayout>
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/viewpager"
